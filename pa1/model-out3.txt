@@ -1,0 +1,2 @@
+Enter the length and width of the lot, in feet: Enter the length and width of the house, in feet: The lawn area is 18300.0 square feet.
+Enter the mowing rate, in square feet per second: The mowing time is 1 hour 1 minute 0 seconds.
