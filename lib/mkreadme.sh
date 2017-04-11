@@ -37,11 +37,8 @@ done || Print "> No $1 Listed"
 
 Print "# $Class grading scripts"
 Print
-GitterClass=$(echo $Class | sed 's/\./-/g')
-GitterRoom="4U6U57/$GitterClass-grading"
-Print "[![Join the chat at https://gitter.im/$GitterRoom]"
-Print "(https://badges.gitter.im/$GitterRoom)]"
-Print "(https://gitter.im/$GitterRoom)"
+GitterRoom="4U6U57/$Class.grading"
+Print "[![Gitter](https://badges.gitter.im/$GitterRoom.svg)](https://gitter.im/$GitterRoom)"
 Print
 Print "Scripts for grading the programs and labs of the $Class class under Patrick Tantalo."
 Print
