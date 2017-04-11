@@ -1,0 +1,4 @@
+Enter the degree: Enter 11 coefficients: Enter the left and right endpoints: 
+Root found at -2.64575
+Root found at 2.35133
+Root found at 2.64575

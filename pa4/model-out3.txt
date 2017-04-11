@@ -1,0 +1,7 @@
+Enter the degree: Enter 7 coefficients: Enter the left and right endpoints: 
+Root found at -2.23607
+Root found at -1.73205
+Root found at -1.41421
+Root found at 1.41421
+Root found at 1.73205
+Root found at 2.23607
