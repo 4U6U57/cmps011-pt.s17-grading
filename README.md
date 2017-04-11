@@ -15,4 +15,8 @@ Click on the relevant link below for more information on an assignment.
 
 ### Programs
 
-> No Programs Listed
+pa1 [pa1]
+pa3 [pa3]
+pa4 [pa4]
+pa5 [pa5]
+pa6 [pa6]
