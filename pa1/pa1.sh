@@ -3,7 +3,7 @@
 SRCDIR=https://raw.githubusercontent.com/4u6u57/cmps011-pt.s17.grading/master/pa1
 for TYPE in in model-out; do
     for NUM in $(seq 1 3); do
-        wget $SRCDIR/$TYPE$NUM.txt
+        curl $SRCDIR/$TYPE$NUM.txt > $TYPE$NUM.txt
     done
 done
 
