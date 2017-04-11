@@ -7,7 +7,7 @@ The following is a set of performance tests to run on your Lawn program. It take
 Run the following in your working directory (the directory you wrote your code in) to get the test script and example input files:
 
 ```bash
-wget https://raw.githubusercontent.com/4u6u57/cmps011-pt.s17.grading/master/pa1/pa1.sh
+curl https://raw.githubusercontent.com/4u6u57/cmps011-pt.s17.grading/master/pa1/pa1.sh > pa1.sh
 chmod +x pa1.sh
 ```
 
