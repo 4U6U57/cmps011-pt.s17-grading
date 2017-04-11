@@ -22,7 +22,7 @@ AsgTree() { # (AsgReadable AsgPrefix)
 				Print "### $1"
 				Print
 				AsgDirs=( $BinDir/$2* )
-				[[ $AsgDirs != "$BinDir/$2*" ]] && for AsgDir in $AsgDirs; do
+				[[ $AsgDirs != "$BinDir/$2*" ]] && for AsgDir in ${AsgDirs[@]}; do
 				Asg=$(basename $AsgDir)
 				if [[ -d $Asg && -e $AsgDir/README.md ]]; then
 								Print "- [$Asg]($Asg)"
