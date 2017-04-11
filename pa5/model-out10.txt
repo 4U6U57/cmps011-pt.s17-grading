@@ -1,0 +1,1 @@
+11-Queens has 2680 solutions
