@@ -1,0 +1,1 @@
+Enter a positive integer: Enter another positive integer: The GCD of 531 and 300 is 3
