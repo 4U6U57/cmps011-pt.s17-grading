@@ -1,5 +1,5 @@
 #!/bin/bash
-# cmps012a-pt.w17 grading
+# cmps011-pt.s17 grading
 # usage: pa3.sh
 # (run within your pa3 directory to test your code)
 
