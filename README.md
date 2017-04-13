@@ -5,6 +5,10 @@
 Scripts for grading the programs and labs of the cmps011-pt.s17 class
 under Patrick Tantalo.
 
+## More information
+- [EXPECTATIONS](EXPECTATIONS.md): Some expectations we graders have
+for submitted assignments.
+
 ## Assignments
 
 Click on the relevant link below for more information on an assignment.
@@ -15,7 +19,7 @@ Click on the relevant link below for more information on an assignment.
 
 ### Programs
 
-- pa1 *(No README Provided)*
+- [pa1](pa1)
 - pa3 *(No README Provided)*
 - pa4 *(No README Provided)*
 - pa5 *(No README Provided)*
