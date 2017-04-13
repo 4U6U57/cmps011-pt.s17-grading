@@ -5,9 +5,9 @@
 Scripts for grading the programs and labs of the cmps011-pt.s17 class
 under Patrick Tantalo.
 
-## More information
-- [EXPECTATIONS](EXPECTATIONS.md): Some expectations we graders have
-for submitted assignments.
+## Information
+- [EXPECTATIONS](docs/EXPECTATIONS.md): Some expectations we graders
+have for submitted assignments.
 
 ## Assignments
 

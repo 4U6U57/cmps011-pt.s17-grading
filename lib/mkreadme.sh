@@ -42,13 +42,13 @@ Print "[![Gitter](https://badges.gitter.im/$GitterRoom.svg)](https://gitter.im/$
 Print
 Print "Scripts for grading the programs and labs of the $Class class under Patrick Tantalo."
 Print
-Print "## More information"
+Print "## Information"
 for File in docs/*.md; do
   if [[ $File == "docs/*.md" ]]; then
     Print "> No files found"
   else
     FileName=$(basename $File)
-    Print "- [$(basename $FileName .md)]($FileName): $(head -n 1 $File)"
+    Print "- [$(basename $FileName .md)](docs/$FileName): $(head -n 1 $File)"
   fi
 done
 Print
