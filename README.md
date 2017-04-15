@@ -6,6 +6,8 @@ Scripts for grading the programs and labs of the cmps011-pt.s17 class
 under Patrick Tantalo.
 
 ## Information
+- [EDITORS](docs/EDITORS.md): Some notes on workflow and how to edit
+your code on the timeshare
 - [EXPECTATIONS](docs/EXPECTATIONS.md): Some expectations we graders
 have for submitted assignments.
 

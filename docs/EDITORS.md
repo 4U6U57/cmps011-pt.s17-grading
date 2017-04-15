@@ -44,9 +44,9 @@ with the commands `javac Lawn.java` to compile and `java Lawn` to run.
 
 ## Using Your Own Editor
 
-It is completely fine to use your own editor (Sublime Text, Notepad++, [etc]
-(https://xkcd.com/1823/)) for step (1), and then copy over the files to the Unix
-timeshare for step (2). Note that in order for you to compile the latest
+It is completely fine to use your own editor (Sublime Text, Notepad++,
+[etc](https://xkcd.com/1823/)) for step (1), and then copy over the files to the
+Unix timeshare for step (2). Note that in order for you to compile the latest
 version, you *must copy over your code every time you make an edit*.
 
 There are a few ways to do this, but the one that Pat recommends is FileZilla,
