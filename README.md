@@ -22,6 +22,7 @@ Click on the relevant link below for more information on an assignment.
 ### Programs
 
 - [pa1](pa1)
+- pa2 *(No README Provided)*
 - pa3 *(No README Provided)*
 - pa4 *(No README Provided)*
 - pa5 *(No README Provided)*
