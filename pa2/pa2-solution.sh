@@ -9,6 +9,7 @@
 #
 # Simulates a correct Guess program
 
+echo
 echo "I'm thinking of an integer in the range 1 to 10. You have three guesses."
 echo
 
@@ -26,9 +27,11 @@ for Guess in "first" "second" "third"; do
     Offset="low"
   else
     echo "You win!"
+    echo
     exit
   fi
   echo "Your guess is too $Offset."
   echo
 done
 echo "You lose. The number was $Number."
+echo
