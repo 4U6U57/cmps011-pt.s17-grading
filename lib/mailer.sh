@@ -1,11 +1,18 @@
 #!/././././bin/./.././bin/././././bash
 
-# mailer.sh
-# sends grade files to all students for a specific assignment
+##
+# @file mailer.sh
+# @brief sends GRADE.txt files to all students for specified assignment
+# @author August Valera (avalera)
+# @version
+# @date 2017-04-19
+#
 # Usage: mailer.sh [$ASG] [$FILE]
 #        ASG: Assignment to mail, defaults to current directory name if valid
 #        FILE: Grade file to send, defaults to GRADE.txt if not specified
-# August Valera <avalera>
+#
+# To send mail, you will need a ~/.mailrc file. Visit the link below for info.
+# http://its.ucsc.edu/unix-timeshare/google-and-pine.html
 
 Exe="mailer"
 MailWait=3
