@@ -17,7 +17,7 @@ echo $ClassDir/$1
 if [[ -d "$ClassDir/$Pwd" && "$Pwd" != "bin" ]]; then
   Asg=$Pwd
   echo "Asg $Asg taken from basename of current directory"
-elif [[ -d "$ClassDir/$1" ]]; then
+elif [[ ! -z "$1" && -d "$ClassDir/$1" ]]; then
   Asg=$1
   echo "Asg $Asg taken from first argument of script"
   shift
