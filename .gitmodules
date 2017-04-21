@@ -1,0 +1,3 @@
+[submodule "automatic"]
+	path = automatic
+	url = git@github.com:legendddhgf/automatic.git

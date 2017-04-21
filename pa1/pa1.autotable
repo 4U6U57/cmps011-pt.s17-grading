@@ -1,0 +1,32 @@
+1: Performance Tests
+1.desc.1: Failed one test
+1.desc.2: Failed two tests
+1.desc.3: Failed all tests
+1.maxpts: 15
+2: Plurals and Singulars
+2.desc.1: Plurals and Singulars not completely implemented
+2.maxpts: 5
+3: Area Calculation
+3.desc.1: Incorrect Area
+3.maxpts: 5
+4: Time Calculation
+4.desc.1: Incorrect Time
+4.maxpts: 5
+5: Calculating Hours, Minutes, Seconds
+5.desc.1: Incorrect Hours, Minutes, or Seconds
+5.maxpts: 5
+6: Class named Lawn
+6.desc.1: Not named Lawn
+6.maxpts: 5
+7: Comment Block
+7.desc.1: Comment block invalid or nonexistant
+7.maxpts: 5
+8: Naming (Lawn.java)
+8.desc.1: File <> named incorrectly
+8.maxpts: 10
+9: Compilation Issues
+9.desc.1: Had up to a few compilation issues
+9.desc.2: Had more than a few compilation issues
+9.desc.3: Had way too many compilation issues
+9.desc.4: The charity is real
+9.maxpts: 25
