@@ -27,4 +27,3 @@ for NUM in $(seq 1 6); do
 done
 
 rm -f *.class
-
