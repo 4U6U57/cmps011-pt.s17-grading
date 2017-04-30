@@ -33,4 +33,7 @@ between any of the pairs of equal signs
 ## Removal
 
 You can delete the test and all other downloaded/generated files with:
-`rm -f pa3.sh diff*.txt out*.txt model-out*.txt in*
+
+```bash
+rm -f pa3.sh diff*.txt out*.txt model-out*.txt in*
+```
