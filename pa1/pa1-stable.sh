@@ -17,6 +17,7 @@ forall() {
   for STUDENT in $(ls -d */); do
     STUDENTDIR=$ASGDIR/$STUDENT
     STUDENT=$(basename $STUDENT /)
+    STUDENTNAME=$(getent passwd $STUDENT | cut -d ":" -f 5)
     cd $STUDENTDIR
     #echo "$SEPARATE"
     #pwd
@@ -105,14 +106,32 @@ grade() {
 
   # Comment block (#7)
   if [[ ! -z $UserSourceFile ]]; then
-    CommentBlock="$(head -n 10 $UserSourceFile | grep "^\s*[/#\*]")"
+    CommentBlock="$(head -n 10 $UserSourceFile | grep "^\s*[/#*]")"
     if [[ ! -z $CommentBlock ]]; then
+      Score=5
+      Note="$UserSourceFile contained comment block"
+      StudentFirstName=$(echo $STUDENTNAME | cut -d " " -f 1)
+      if ! grep "$UserSourceFile" <(echo "$CommentBlock") >/dev/null; then
+        Note+=", missing filename ($UserSourceFile)"
+        Score=$((Score - 1))
+      fi
+      if ! grep "$StudentFirstName" <(echo "$CommentBlock") >/dev/null; then
+        Note+=", missing your name ($StudentFirstName)"
+        Score=$((Score - 1))
+      fi
+      if ! grep -i "$STUDENT" <(echo "$CommentBlock") >/dev/null; then
+        Note+=", missing CruzID ($STUDENT)"
+        Score=$((Score - 1))
+      fi
+      if ! grep -i "pa\s*1" <(echo "$CommentBlock") >/dev/null; then
+        Note+=", missing assignment name (pa1)"
+        Score=$((Score - 1))
+      fi
       settable grade 7 P
-      settable notes 7 "Lawn.java contained comment block"
+      settable notes 7 "$Note"
     else
-      echo nocomment
       settable grade 7 C
-      settable notes 7 "Lawn.java did not contain a comment block"
+      settable notes 7 "$UserSourceFile did not contain a comment block"
     fi
   else
     settable grade 7 C
@@ -120,6 +139,16 @@ grade() {
   fi
 
   # Class name (#6)
+  if [[ ! -z $UserSourceFile ]]; then
+    ClassName="$(grep -P '^\s*(public\s+)?class\s+' $UserSourceFile | head -n 1 | sed 's#public##g;s#class##g;s#{##g;s#^\s*##g;s#\s.*$##g')"
+    if [[ $ClassName == "Lawn" ]]; then
+      settable grade 6 P
+      settable notes 6 "Class Lawn named correctly"
+    else
+      settable grade 6 C
+      settable notes 6 "Class Lawn named incorrectly: $ClassName"
+    fi
+  fi
 
   # Performance tests (#1)
   rm -f $EXE *.class out
