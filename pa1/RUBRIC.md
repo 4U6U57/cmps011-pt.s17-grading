@@ -21,26 +21,29 @@ test.
 ### Plurals and Singulars
 > 5 points
 
-2.desc.1: Plurals and Singulars not completely implemented
-2.maxpts: 5
+If your code was designed to print an 's' when a corresponding value
+(for H, M, or S) was not 1, then you get full credit. Otherwise, you get
+no credit
 
 ### Area Calculation
 > 5 points
 
-3.desc.1: Incorrect Area
-3.maxpts: 5
+Your code correctly calculates area (you don't have to print it to get
+full credit here)
 
 ### Time Calculation
 > 5 points
 
-4.desc.1: Incorrect Time
-4.maxpts: 5
+Your code correctly calculates time in all instances. It should be:
+```
+Math.round(lawnArea/mowRate);
+```
 
 ### Calculating Hours, Minutes, Seconds
 > 5 points
 
-5.desc.1: Incorrect Hours, Minutes, or Seconds
-5.maxpts: 5
+Your code correctly calculates a breakdown of Hours, Minutes, and
+Seconds.
 
 ### Class named Lawn
 > 5 points
