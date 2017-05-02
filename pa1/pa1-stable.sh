@@ -93,11 +93,11 @@ grade() {
     JavaFiles=( *.java )
     if [[ ! -e ${JavaFiles[0]} ]]; then
       UserSourceFile=""
-      settable grade 8 P
+      settable grade 8 C
       settable notes 8 "Lawn.java not submitted, cannot grade name"
     else
       UserSourceFile="${JavaFiles[0]}"
-      settable grade 8 C
+      settable grade 8 3
       settable notes 8 "Lawn.java named incorrectly: $UserSourceFile"
     fi
   else
@@ -129,7 +129,8 @@ grade() {
         Note+=", missing assignment name (pa1)"
         Score=$((Score - 1))
       fi
-      settable grade 7 P
+      [[ $Score -eq 5 ]] && Score=P
+      settable grade 7 $Score
       settable notes 7 "$Note"
     else
       settable grade 7 C
@@ -148,8 +149,20 @@ grade() {
       settable grade 6 P
       settable notes 6 "Class Lawn named correctly"
     else
-      settable grade 6 C
+      settable grade 6 P
       settable notes 6 "Class Lawn named incorrectly: $UserClassName"
+    fi
+  fi
+
+  # Compilation step, if no compile, opens a bash shell to fix issues
+  # Copy original file into *.java.orig, if cannot compile, just leave it without a .class file
+  # Make sure to copy all changes (*.java, *.java.orig) into .backup to prevent auto revert
+  UserClassFile=Lawn.class
+  if [[ ! -z $UserSourceFile ]]; then
+    javac $UserSourceFile
+    UserClassFile="$UserClassName.class"
+    if [[ ! -e $UserClassFile ]]; then
+      bash
     fi
   fi
 
@@ -159,15 +172,17 @@ grade() {
   # Specifically, it works by comparing faulty files file.java.orig with fixed file.java
   # Point value for deduction based on the diff output, or how many changes needed to compile
   if [[ ! -z $UserSourceFile ]]; then
-    if [[ -e $UserSourceFile.orig ]]; then
+    if [[ ! -e $UserClassFile ]]; then
+      settable grade 9 C
+      settable notes 9 "Could not compile"
+    elif [[ -e $UserSourceFile.orig ]]; then
       CompileDiff="$(diff -ub $UserSourceFile.orig $UserSourceFile)"
-      CompileCount=$(echo $CompileDiff | grep "^[+-]" | wc -l)
-      CompileCount=$((CompileCount / 2)) # Since each - is usually accompanied by a -
-      CompileScore=$((25 - $(($CompileCount / 2)))) # Formula derived to maximize charity
-      [[ $CompileScore -lt 5 ]] && CompileScore=C
+      CompileCount=$(echo "$CompileDiff" | grep "^[+-]" | wc -l)
+      CompileCountWeigh=$((CompileCount / 2)) # Since each - is usually accompanied by a -
+      CompileScore=$((25 - CompileCountWeigh))
+      [[ $CompileScore -le 5 ]] && CompileScore=C
       settable grade 9 $CompileScore
       settable notes 9 "Errors in compilation: $CompileCount lines of diff output"
-      echo CompileScore $CompileScore
     else
       settable grade 9 P
       settable notes 9 "No compilation issues"
@@ -179,30 +194,50 @@ grade() {
 
   # Performance tests (#1)
   # 15 points
-  if [[ ! -z $UserSourceFile ]]; then
-    javac $UserSourceFile
-    UserClassFile="$UserClassName.class"
-    if [[ ! -e $UserClassFile ]]; then
-      echo "no school"
-      ls -m
+  if [[ -e $UserClassFile ]]; then
+    PerfScore=15
+    PerfNotes=""
+    for I in $(seq 1 3); do
+      InFile="$ASGBIN/in$I.txt"
+      OutFile="out$I.txt"
+      ModelOutFile="$ASGBIN/model-out$I.txt"
+      DiffFile="diff$I.txt"
+      java $UserClassName <$InFile >$OutFile 2>&1
+      diff -u $OutFile $ModelOutFile >$DiffFile
+      if [[ -e $DiffFile ]]; then
+        DiffCount=$(cat $DiffFile | grep "^[+-]" | wc -l)
+        DiffCountWeigh=$((DiffCount / 2))
+        [[ $DiffCountWeigh -gt 5 ]] && DiffCountWeigh=5
+        PerfScore=$((PerfScore - DiffCountWeigh))
+        PerfNotes+=", failed in$1.txt with $DiffCount lines of diff output"
+        cp $DiffFile $BACKUP
+      fi
+      cp $OutFile $BACKUP
+    done
+    if [[ $PerfScore -eq 15 ]]; then
+      settable grade 1 P
+      settable notes 1 "Performance tests all passed"
     else
-      echo "good"
+      settable grade 1 $PerfScore
+      settable notes 1 "Performance issues$PerfNotes"
     fi
+    rm -f $UserClassFile
   else
-    echo "no coffee"
+    settable grade 1 C
+    settable notes 1 "Lawn.java not submitted, could not check performance"
   fi
 
-}
+  }
 
-main() {
-  BACKUP=".backup"
-  pwd
-  backup $BACKUP
-  readtable $ASGTABLE/student_$STUDENT.autotable
-  grade
-  restore $BACKUP
-  writetable $ASGTABLE/student_$STUDENT.autotable # Comment this one out
-  # writetable $ASGTABLE/student_$STUDENT.autotable # Uncomment to deploy
-  cleartable
-}
-forall main
+  main() {
+    BACKUP=".backup"
+    pwd
+    backup $BACKUP
+    readtable $ASGTABLE/student_$STUDENT.autotable
+    grade
+    restore $BACKUP
+    writetable $ASGTABLE/student_$STUDENT.autotable # Comment this one out
+    # writetable $ASGTABLE/student_$STUDENT.autotable # Uncomment to deploy
+    cleartable
+  }
+  forall main
