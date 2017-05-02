@@ -1,7 +1,9 @@
 ## Rubric for cmps011-pt.s17/pa1
 
 Sorry about the delay, **pa1** was released on **DAY, DATE**. It was out of 80
-points, and the average was a **AVERAGE**%. You should have received a 
+points, and the average was a **AVERAGE**%. You should have received a grade
+report email with a breakdown of your score, which should also be reflected on
+eCommons. Below is a description of each section of the grade breakdown.
 
 ## Grade Breakdown
 
@@ -99,7 +101,7 @@ We then took the difference between the original and the modified versions (with
 each change consists of a deletion **-** and an addition **+** to the file) was
 taken to be the general number of changes needed to be made to make the program
 compile.
-
+original 
 Your score was then set to *max(25 - number of changes, 5)*, to enforce a 5 point
 minimum on this section for charity.
 
@@ -114,6 +116,20 @@ think you should have.
 
 ## Grade Review
 
-A grade review is a request for the graders to review your work believe that *it
-  has been graded in error, consistent with the rubric outlined above*. (more
-  info about grade review here)
+A grade review is a request for the graders to review work you believe *has been
+graded in error, inconsistent with the rubric outlined above*. By submitting a
+grade review, you are allowing us to go through your submission and modify your
+score. Note that this applies for the whole submission, meaning that although in
+most cases your score may stay the same or increase if we find errors in our
+grading, there is the possibility that we may find additional problems in your
+submission that would cause your score to decrease.
+
+Note that a review is simply that, a reviewing of your original submission. You
+may not submit new files for grading (because you submitted the wrong version,
+or had trouble submitting in the first place, etc.). Concerns of this nature
+must be brought up with the instructor.
+
+You may request a grade review by sending a reply to your grade report email,
+with the word **REVIEW** in all caps within the body of the email. Any email
+that does not contain **REVIEW** shall be treated as a general question, and
+will not affect your grade.
