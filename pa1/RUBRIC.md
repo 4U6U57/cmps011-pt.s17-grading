@@ -8,7 +8,7 @@ eCommons. Below is a description of each section of the grade breakdown.
 ## Grade Breakdown
 
 ### Performance Tests
-> 15 points, 5 points for test
+> 15 points, 5 points per test
 
 For a single test (test inputs were the same used for the [pa1.sh
 script](../README.md)):
