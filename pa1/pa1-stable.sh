@@ -87,6 +87,7 @@ grade() {
   # Actual grading code here
 
   # File name (#8)
+  # 10 points, 5 points charity
   UserSourceFile="Lawn.java"
   if [[ ! -e $UserSourceFile ]]; then
     JavaFiles=( *.java )
@@ -105,6 +106,7 @@ grade() {
   fi
 
   # Comment block (#7)
+  # 5 points, 0 points charity
   if [[ ! -z $UserSourceFile ]]; then
     CommentBlock="$(head -n 10 $UserSourceFile | grep "^\s*[/#*]")"
     if [[ ! -z $CommentBlock ]]; then
@@ -134,24 +136,62 @@ grade() {
       settable notes 7 "$UserSourceFile did not contain a comment block"
     fi
   else
-    settable grade 7 C
+    settable grade 7 P
     settable notes 7 "Lawn.java not submitted, cannot grade comment block"
   fi
 
   # Class name (#6)
+  # 5 points, 0 points charity
   if [[ ! -z $UserSourceFile ]]; then
-    ClassName="$(grep -P '^\s*(public\s+)?class\s+' $UserSourceFile | head -n 1 | sed 's#public##g;s#class##g;s#{##g;s#^\s*##g;s#\s.*$##g')"
-    if [[ $ClassName == "Lawn" ]]; then
+    UserClassName="$(grep -P '^\s*(public\s+)?class\s+' $UserSourceFile | head -n 1 | sed 's#public##g;s#class##g;s#{##g;s#^\s*##g;s#\s.*$##g')"
+    if [[ $UserClassName == "Lawn" ]]; then
       settable grade 6 P
       settable notes 6 "Class Lawn named correctly"
     else
       settable grade 6 C
-      settable notes 6 "Class Lawn named incorrectly: $ClassName"
+      settable notes 6 "Class Lawn named incorrectly: $UserClassName"
     fi
   fi
 
+  # Compilation issues (#9)
+  # 25 points, 5 points charity
+  # This section goes under the assumption that all compilation errors have already been fixed
+  # Specifically, it works by comparing faulty files file.java.orig with fixed file.java
+  # Point value for deduction based on the diff output, or how many changes needed to compile
+  if [[ ! -z $UserSourceFile ]]; then
+    if [[ -e $UserSourceFile.orig ]]; then
+      CompileDiff="$(diff -ub $UserSourceFile.orig $UserSourceFile)"
+      CompileCount=$(echo $CompileDiff | grep "^[+-]" | wc -l)
+      CompileCount=$((CompileCount / 2)) # Since each - is usually accompanied by a -
+      CompileScore=$((25 - $(($CompileCount / 2)))) # Formula derived to maximize charity
+      [[ $CompileScore -lt 5 ]] && CompileScore=C
+      settable grade 9 $CompileScore
+      settable notes 9 "Errors in compilation: $CompileCount lines of diff output"
+      echo CompileScore $CompileScore
+    else
+      settable grade 9 P
+      settable notes 9 "No compilation issues"
+    fi
+  else
+    settable grade 9 C
+    settable notes 9 "Lawn.java not submitted, could not check compilation"
+  fi
+
   # Performance tests (#1)
-  rm -f $EXE *.class out
+  # 15 points
+  if [[ ! -z $UserSourceFile ]]; then
+    javac $UserSourceFile
+    UserClassFile="$UserClassName.class"
+    if [[ ! -e $UserClassFile ]]; then
+      echo "no school"
+      ls -m
+    else
+      echo "good"
+    fi
+  else
+    echo "no coffee"
+  fi
+
 }
 
 main() {

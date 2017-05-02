@@ -24,9 +24,11 @@
 8: Naming (Lawn.java)
 8.desc.1: File <> named incorrectly
 8.maxpts: 10
+8.charity: 5
 9: Compilation Issues
 9.desc.1: Had up to a few compilation issues
 9.desc.2: Had more than a few compilation issues
 9.desc.3: Had way too many compilation issues
 9.desc.4: The charity is real
+9.charity: 5
 9.maxpts: 25
