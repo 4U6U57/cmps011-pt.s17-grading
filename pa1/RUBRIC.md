@@ -1,5 +1,8 @@
 ## Rubric for cmps011-pt.s17/pa1
 
+Sorry about the delay, **pa1** was released on **DAY, DATE**. It was out of 80
+points, and the average was a **AVERAGE**%. You should have received a 
+
 ## Grade Breakdown
 
 ### Performance Tests
@@ -12,8 +15,11 @@ Full credit for matching model output exactly.
 
 If there was difference in output (found by running `diff -u`), then we counted
 the number of lines of difference generated, divided that by 2 (because each
-change consists of a deletion **-** and an addition **+** to the file), and then
-subtracted that number from 5 to get your score.
+error consists of a deletion **-** and an addition **+** to the file), and set
+that number to be the number of errors.
+
+The score was then set to *max(5 - errors, 0)* to enforce a minimum of 0 for
+this section.
 
 The number of lines of difference is included in your grade report for each
 test.
@@ -38,7 +44,6 @@ Your code correctly calculates time in all instances. It should be:
 ```
 Math.round(lawnArea/mowRate);
 ```
-
 ### Calculating Hours, Minutes, Seconds
 > 5 points
 
@@ -48,8 +53,8 @@ Seconds.
 ### Class named Lawn
 > 5 points
 
-Full credit for naming your class `Lawn` (your code is wrapped in a `class Lawn
-{ ... }` block, and you run your program with `java Lawn`).
+Full credit for naming the class `Lawn` (the code is wrapped in a `class Lawn
+{ ... }` block, and the program is run with `java Lawn`).
 
 No credit for not doing this.
 
@@ -72,15 +77,15 @@ lines of the file for lines prefixed with a `/` or `*`).
 ### Naming (Lawn.java)
 > 10 points, 5 minimum
 
-Full credit if you submitted a file named exactly `Lawn.java`
+Full credit for submitting a file named exactly `Lawn.java`
 
-5 points if you submitted some other `.java` file
+5 points for submitting some other `.java` file
 
-5 points if you did not submit any Java file (charity, due to major deductions
+5 points for not submitting any Java file (charity, due to major deductions
   elsewhere).
 
 ### Compilation Issues
-> 25 points
+> 25 points, 5 minimum
 
 Full credit if file compiles (running `javac Lawn.java` produces a `Lawn.class`,
 names may vary due to other errors, but this was not taken into account).
@@ -97,3 +102,18 @@ compile.
 
 Your score was then set to *max(25 - number of changes, 5)*, to enforce a 5 point
 minimum on this section for charity.
+
+## Questions
+
+Any questions about the rubric or the assignment should be posted on the Piazza
+followup discussion pertaining to the rubric. More personal questions pertaining
+to your specific submission should be sent as a reply to your grade report
+email, to give us context on your submission. We will not accept any other
+emails, the only exception being if you did not receive a grade report email and
+think you should have.
+
+## Grade Review
+
+A grade review is a request for the graders to review your work believe that *it
+  has been graded in error, consistent with the rubric outlined above*. (more
+  info about grade review here)

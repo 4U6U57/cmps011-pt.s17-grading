@@ -152,6 +152,9 @@ grade() {
       settable grade 6 C
       settable notes 6 "Class Lawn named incorrectly: $UserClassName"
     fi
+  else
+    settable grade 6 C
+    settable notes 6 "Lawn.java not submitted, cannot grade class name"
   fi
 
   # Compilation step, if no compile, opens a bash shell to fix issues
