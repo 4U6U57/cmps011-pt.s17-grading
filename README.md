@@ -23,7 +23,7 @@ Click on the relevant link below for more information on an assignment.
 ### Programs
 
 - [pa1](pa1)
-    - [Rubric](RUBRIC.md)
+    - [Rubric](pa1/RUBRIC.md)
 - [pa2](pa2)
 - [pa3](pa3)
 - pa4 *(No README Provided)*

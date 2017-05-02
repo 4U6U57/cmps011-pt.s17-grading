@@ -27,7 +27,7 @@ AsgTree() { # (AsgReadable AsgPrefix)
   if [[ -d $Asg && -e $AsgDir/README.md ]]; then
     Print "- [$Asg]($Asg)"
     if [[ -e $AsgDir/RUBRIC.md ]]; then
-      Print "    - [Rubric](RUBRIC.md)"
+      Print "    - [Rubric]($Asg/RUBRIC.md)"
     fi
   else
     Print "- $Asg *(No README Provided)*"
