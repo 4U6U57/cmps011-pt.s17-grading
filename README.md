@@ -17,11 +17,13 @@ Click on the relevant link below for more information on an assignment.
 
 ### Labs
 
-> No Labs Listed
+- lab1 *(No README Provided)*
+- lab2 *(No README Provided)*
 
 ### Programs
 
 - [pa1](pa1)
+    - [Rubric](RUBRIC.md)
 - [pa2](pa2)
 - [pa3](pa3)
 - pa4 *(No README Provided)*

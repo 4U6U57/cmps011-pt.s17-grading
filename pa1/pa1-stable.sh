@@ -149,7 +149,7 @@ grade() {
       settable grade 6 P
       settable notes 6 "Class Lawn named correctly"
     else
-      settable grade 6 P
+      settable grade 6 C
       settable notes 6 "Class Lawn named incorrectly: $UserClassName"
     fi
   fi
@@ -202,7 +202,7 @@ grade() {
       OutFile="out$I.txt"
       ModelOutFile="$ASGBIN/model-out$I.txt"
       DiffFile="diff$I.txt"
-      rm -f $OutFile $DiffFile
+      rm -f $OutFile $DiffFile $BACKUP/$OutFile $BACKUP/$DiffFile
       java $UserClassName <$InFile >$OutFile 2>&1
       diff -u $OutFile $ModelOutFile >$DiffFile
       if [[ -s $DiffFile ]]; then

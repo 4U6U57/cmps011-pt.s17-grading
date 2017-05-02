@@ -1,0 +1,13 @@
+#!/bin/bash
+echo "Diff's follow:"
+echo "=========="
+echo ""
+echo "----------"
+for num in $(seq 1 3); do
+   echo "diff$num.txt:"
+   echo "=========="
+   cat diff$num.txt
+   echo "=========="
+   echo ""
+   echo "----------"
+done
