@@ -177,7 +177,7 @@ grade() {
       settable notes 9 "Could not compile"
     elif [[ -e $UserSourceFile.orig ]]; then
       CompileDiff="$(diff -ub $UserSourceFile.orig $UserSourceFile)"
-      CompileCount=$(echo "$CompileDiff" | grep "^[+-]" | wc -l)
+      CompileCount=$(echo "$CompileDiff" | tail -n +4 | grep "^[+-]" | wc -l)
       CompileCountWeigh=$((CompileCount / 2)) # Since each - is usually accompanied by a -
       CompileScore=$((25 - CompileCountWeigh))
       [[ $CompileScore -le 5 ]] && CompileScore=C
@@ -202,14 +202,15 @@ grade() {
       OutFile="out$I.txt"
       ModelOutFile="$ASGBIN/model-out$I.txt"
       DiffFile="diff$I.txt"
+      rm -f $OutFile $DiffFile
       java $UserClassName <$InFile >$OutFile 2>&1
       diff -u $OutFile $ModelOutFile >$DiffFile
-      if [[ -e $DiffFile ]]; then
-        DiffCount=$(cat $DiffFile | grep "^[+-]" | wc -l)
+      if [[ -s $DiffFile ]]; then
+        DiffCount=$(cat $DiffFile | tail -n +4 | grep "^[+-]" | wc -l)
         DiffCountWeigh=$((DiffCount / 2))
         [[ $DiffCountWeigh -gt 5 ]] && DiffCountWeigh=5
         PerfScore=$((PerfScore - DiffCountWeigh))
-        PerfNotes+=", failed in$1.txt with $DiffCount lines of diff output"
+        PerfNotes+=", failed $(basename $InFile) with $DiffCount lines of diff output"
         cp $DiffFile $BACKUP
       fi
       cp $OutFile $BACKUP
@@ -227,17 +228,17 @@ grade() {
     settable notes 1 "Lawn.java not submitted, could not check performance"
   fi
 
-  }
+}
 
-  main() {
-    BACKUP=".backup"
-    pwd
-    backup $BACKUP
-    readtable $ASGTABLE/student_$STUDENT.autotable
-    grade
-    restore $BACKUP
-    writetable $ASGTABLE/student_$STUDENT.autotable # Comment this one out
-    # writetable $ASGTABLE/student_$STUDENT.autotable # Uncomment to deploy
-    cleartable
-  }
-  forall main
+main() {
+  BACKUP=".backup"
+  pwd
+  backup $BACKUP
+  readtable $ASGTABLE/student_$STUDENT.autotable
+  grade
+  restore $BACKUP
+  writetable $ASGTABLE/student_$STUDENT.autotable # Comment this one out
+  # writetable $ASGTABLE/student_$STUDENT.autotable # Uncomment to deploy
+  cleartable
+}
+forall main
