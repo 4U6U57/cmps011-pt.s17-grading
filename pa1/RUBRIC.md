@@ -8,8 +8,15 @@ breakdown.
 
 ## Grade Breakdown
 
+This assignment was graded by:
+- Isaak Cherdak (icherdak)
+- August Valera (avalera)
+
+Each section was graded by a specific person, which is denoted by their
+initials.
+
 ### Performance Tests
-> 15 points, 5 points per test
+> 15 points, 5 points per test, AV
 
 For a single test (test inputs were the same used for the [pa1.sh
 script](README.md)):
@@ -28,31 +35,31 @@ The number of lines of difference is included in your grade report for each
 test.
 
 ### Plurals and Singulars
-> 5 points
+> 5 points, IC
 
 If your code was designed to print an 's' when a corresponding value (for H, M,
 or S) was not 1, then you get full credit. Otherwise, you get no credit
 
 ### Area Calculation
-> 5 points
+> 5 points, IC
 
 Your code correctly calculates area (you don't have to print it to get full
 credit here)
 
 ### Time Calculation
-> 5 points
+> 5 points, IC
 
 Your code correctly calculates time in all instances. It should be:
 ```
 Math.round(lawnArea/mowRate);
 ```
 ### Calculating Hours, Minutes, Seconds
-> 5 points
+> 5 points, IC
 
 Your code correctly calculates a breakdown of Hours, Minutes, and Seconds.
 
 ### Class named Lawn
-> 5 points
+> 5 points, AV
 
 Full credit for naming the class `Lawn` (the code is wrapped in a `class Lawn
 { ... }` block, and the program is run with `java Lawn`).
@@ -60,7 +67,7 @@ Full credit for naming the class `Lawn` (the code is wrapped in a `class Lawn
 No credit for not doing this.
 
 ### Comment Block
-> 5 points
+> 5 points, AV
 
 Full credit for a comment block following the standards listed in the
 [lab1 PDF](https://classes.soe.ucsc.edu/cmps011/Spring17/lab1.pdf) and on the
@@ -79,7 +86,7 @@ Full credit for not submitting any Java file (charity, due to major deductions
 elsewhere).
 
 ### Naming (Lawn.java)
-> 10 points, 5 minimum
+> 10 points, 5 minimum, AV
 
 Full credit for submitting a file named exactly `Lawn.java`
 
@@ -88,7 +95,7 @@ Full credit for submitting a file named exactly `Lawn.java`
 5 points for not submitting any Java file (charity, same as prev).
 
 ### Compilation Issues
-> 25 points, 5 minimum
+> 25 points, 5 minimum, AV
 
 Full credit if file compiles (running `javac Lawn.java` produces a `Lawn.class`,
 names may vary due to other errors, but this was not taken into account).
