@@ -120,6 +120,9 @@ case $MailInput in
     CountSend=$CountUpdate
     StringSend="updated grades"
     ;;
+  (v|V):
+    MailSend=$(echo "$MailNew $MailUpdate" | sort)
+    ;;
   (a|A):
     MailSend=$(echo "$MailNew $MailUpdate" | sort)
     CountSend=$((CountNew + CountUpdate))
@@ -130,6 +133,17 @@ esac
 
 if [[ $CountSend == 0 ]]; then
   echo "Okay, not sending any mails."
+  if [[ ! -z "$MailSend" ]]; then
+    echo "Clearing all $Exe flags"
+    for Student in $MailSend; do
+      Student="$(basename $Student)"
+      StudentDir="$AsgDir/$Student"
+      StudentGrade="$StudentDir/$GradeFile"
+      BackupGrade="$MailDir/$Student.$GradeFile"
+      echo "Clearing flag for $Student"
+      cp $StudentGrade $BackupGrade
+    done
+  fi
 else
   echo "Sending $CountSend $StringSend (ETA: $((CountSend * MailWait)))"
   for Student in $MailSend; do

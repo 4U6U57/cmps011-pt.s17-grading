@@ -1,9 +1,10 @@
 ## Rubric for cmps011-pt.s17/pa1
 
-Sorry about the delay, **pa1** was released on **DAY, DATE**. It was out of 80
-points, and the average was a **AVERAGE**%. You should have received a grade
-report email with a breakdown of your score, which should also be reflected on
-eCommons. Below is a description of each section of the grade breakdown.
+Sorry about the delay, **pa1** was released on **Tuesday, May 2, 2017**. It was
+out of 80 points, and the average was a **72 (90%)**. You should have received a
+grade report email with a breakdown of your score, which should also be
+reflected on eCommons. Below is a description of each section of the grade
+breakdown.
 
 ## Grade Breakdown
 
@@ -11,7 +12,7 @@ eCommons. Below is a description of each section of the grade breakdown.
 > 15 points, 5 points per test
 
 For a single test (test inputs were the same used for the [pa1.sh
-script](../README.md)):
+script](README.md)):
 
 Full credit for matching model output exactly.
 
@@ -29,15 +30,14 @@ test.
 ### Plurals and Singulars
 > 5 points
 
-If your code was designed to print an 's' when a corresponding value
-(for H, M, or S) was not 1, then you get full credit. Otherwise, you get
-no credit
+If your code was designed to print an 's' when a corresponding value (for H, M,
+or S) was not 1, then you get full credit. Otherwise, you get no credit
 
 ### Area Calculation
 > 5 points
 
-Your code correctly calculates area (you don't have to print it to get
-full credit here)
+Your code correctly calculates area (you don't have to print it to get full
+credit here)
 
 ### Time Calculation
 > 5 points
@@ -49,8 +49,7 @@ Math.round(lawnArea/mowRate);
 ### Calculating Hours, Minutes, Seconds
 > 5 points
 
-Your code correctly calculates a breakdown of Hours, Minutes, and
-Seconds.
+Your code correctly calculates a breakdown of Hours, Minutes, and Seconds.
 
 ### Class named Lawn
 > 5 points
@@ -76,6 +75,9 @@ Full credit for a comment block following the standards listed in the
 No credit for not having a comment block (detected by checking the first 10
 lines of the file for lines prefixed with a `/` or `*`).
 
+Full credit for not submitting any Java file (charity, due to major deductions
+elsewhere).
+
 ### Naming (Lawn.java)
 > 10 points, 5 minimum
 
@@ -83,8 +85,7 @@ Full credit for submitting a file named exactly `Lawn.java`
 
 5 points for submitting some other `.java` file
 
-5 points for not submitting any Java file (charity, due to major deductions
-  elsewhere).
+5 points for not submitting any Java file (charity, same as prev).
 
 ### Compilation Issues
 > 25 points, 5 minimum
@@ -99,11 +100,11 @@ consisted of mostly fixing syntax errors, typos, and bad variable scope.
 We then took the difference between the original and the modified versions (with
 `diff -ub`). The amount of lines of difference generated, divided by 2 (because
 each change consists of a deletion **-** and an addition **+** to the file) was
-taken to be the general number of changes needed to be made to make the program
-compile.
-original 
-Your score was then set to *max(25 - number of changes, 5)*, to enforce a 5 point
-minimum on this section for charity.
+taken to be the general number of changes needed to be made to make the
+program compile.
+
+Your score was then set to *max(25 - number of changes, 5)*, to enforce a 5
+point minimum on this section for charity.
 
 ## Questions
 
