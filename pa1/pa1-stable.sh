@@ -119,7 +119,6 @@ grade() {
       fi
       if ! grep "$StudentFirstName" <(echo "$CommentBlock") >/dev/null; then
         Note+=", missing your name ($StudentFirstName)"
-        Score=$((Score - 1))
       fi
       if ! grep -i "$STUDENT" <(echo "$CommentBlock") >/dev/null; then
         Note+=", missing CruzID ($STUDENT)"

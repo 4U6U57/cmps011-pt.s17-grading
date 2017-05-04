@@ -75,9 +75,14 @@ Full credit for a comment block following the standards listed in the
 
 1 point deducted for omitting each of the following:
 - filename (exactly as it appears in `ls`)
-- your name (specifically, your first name, as seen in `getent passwd $USER`)
+- ~~your name (specifically, your first name, as seen in `getent passwd
+    $USER`)~~
 - your CruzID (as seen in `echo $USER`)
 - assignment name (`pa1` exactly as used in the submit command)
+
+**Modification:** No deduction for omitting your name in the comment block (you
+will still receive notice that it was not detected). This is to mitigate issues
+with those who go by names other than what is listed on the Campus Directory.
 
 No credit for not having a comment block (detected by checking the first 10
 lines of the file for lines prefixed with a `/` or `*`).
