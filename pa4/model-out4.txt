@@ -1,4 +1,4 @@
 Enter the degree: Enter 8 coefficients: Enter the left and right endpoints: 
-Root found at -1.73205
-Root found at 1.70998
-Root found at 1.73205
+Even root found at: -1.7320508076
+Odd root found at: 1.7099759467
+Even root found at: 1.7320508076

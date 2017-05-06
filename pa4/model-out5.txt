@@ -1,4 +1,4 @@
 Enter the degree: Enter 11 coefficients: Enter the left and right endpoints: 
-Root found at -2.64575
-Root found at 2.35133
-Root found at 2.64575
+Even root found at: -2.6457513111
+Even root found at: 2.3513346877
+Even root found at: 2.6457513111

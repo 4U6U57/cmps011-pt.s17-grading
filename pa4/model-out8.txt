@@ -1,0 +1,5 @@
+Enter the degree: Enter 7 coefficients: Enter the left and right endpoints: 
+Even root found at: -1.0000000000
+Odd root found at: -0.0000000000
+Even root found at: 1.0000000000
+Odd root found at: 2.0000000000

@@ -1,4 +1,4 @@
 Enter the degree: Enter 4 coefficients: Enter the left and right endpoints: 
-Root found at 1.00000
-Root found at 2.00000
-Root found at 3.00000
+Odd root found at: 1.0000000000
+Odd root found at: 2.0000000000
+Odd root found at: 3.0000000000
