@@ -1,5 +1,13 @@
 #!/bin/bash
 
+##
+# @file pa1-stable.sh
+# @brief Grading script for all pa1's, compatible with autotable format
+# @author August Valera (avalera)
+# @version cmps011-pt/pa1-stable
+# @date 2017-05-05
+
+
 GRADEFILE="grade.txt"
 PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLASSDIR="$(echo $PWD | cut -d '/' -f 1-5)"
