@@ -1,3 +1,2 @@
 Enter the degree: Enter 3 coefficients: Enter the left and right endpoints: 
-Odd root found at: -1.4142135624
-Odd root found at: 1.4142135624
+Even root found at: 2.0000000000
