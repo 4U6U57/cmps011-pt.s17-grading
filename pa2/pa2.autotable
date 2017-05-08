@@ -1,0 +1,24 @@
+1: Termination on Win
+1.desc.1: Charity Points
+1.maxpts: 10
+2: Displays Correct Answer on Lose
+2.desc.1: Charity Points
+2.maxpts: 6
+3: All three guesses inform whether guess was higher or lower
+3.desc.1: Charity Points
+3.maxpts: 5
+4: Number Range
+4.desc.1: Range is uniformly distributed but not from 1-10
+4.desc.2: Range is non-uniformly distributed from 1-10
+4.desc.3: Range is non-uniformly distributed and not from 1-10
+4.desc.4: Range is unacceptable
+4.maxpts: 20
+5: Comment Block
+5.desc.1: Comment block invalid or nonexistant
+5.maxpts: 5
+6: Naming (Guess.java)
+6.desc.1: File <> named incorrectly
+6.maxpts: 5
+7: Compilation Issues (generally free points)
+7.desc.1: Code doesn't compile without modification
+7.maxpts: 30
