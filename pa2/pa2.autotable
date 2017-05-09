@@ -3,7 +3,7 @@
 1.maxpts: 10
 2: Displays Correct Answer on Lose
 2.desc.1: Charity Points
-2.maxpts: 6
+2.maxpts: 5
 3: All three guesses inform whether guess was higher or lower
 3.desc.1: Charity Points
 3.maxpts: 5
@@ -19,6 +19,9 @@
 6: Naming (Guess.java)
 6.desc.1: File <> named incorrectly
 6.maxpts: 5
-7: Compilation Issues (generally free points)
-7.desc.1: Code doesn't compile without modification
-7.maxpts: 30
+7: Class name
+7.desc.1: Class not named Guess
+7.maxpts: 5
+8: Compilation Issues (generally free points)
+8.desc.1: Code doesn't compile without modification
+8.maxpts: 25
