@@ -94,6 +94,116 @@ restore() {
 grade() {
   # Actual grading code here
 
+  # File name (#6)
+  # 5 points charity
+  UserSourceFileDefault="Guess.java"
+  UserSourceFile=$UserSourceFileDefault
+  if [[ ! -e $UserSourceFile ]]; then
+    JavaFiles=( *.java )
+    if [[ ! -e ${JavaFiles[0]} ]]; then
+      UserSourceFile=""
+      settable grade 6 C
+      settable notes 6 "$UserSourceFileDefault not submitted, cannot grade name"
+    else
+      UserSourceFile="${JavaFiles[0]}"
+      settable grade 6 3
+      settable notes 6 "$UserSourceFileDefault named incorrectly: $UserSourceFile"
+    fi
+  else
+    settable grade 6 P
+    settable notes 6 "$UserSourceFile named correctly"
+  fi
+
+  # Comment block (#5)
+  # 5 points, 0 points charity
+  if [[ ! -z $UserSourceFile ]]; then
+    CommentBlock="$(head -n 10 $UserSourceFile | grep "^\s*[/#*]")"
+    if [[ ! -z $CommentBlock ]]; then
+      Score=5
+      Note="$UserSourceFile contained comment block"
+      StudentFirstName=$(echo $STUDENTNAME | cut -d " " -f 1)
+      if ! grep "$UserSourceFile" <(echo "$CommentBlock") >/dev/null; then
+        Note+=", missing filename ($UserSourceFile)"
+        Score=$((Score - 1))
+      fi
+      if ! grep "$StudentFirstName" <(echo "$CommentBlock") >/dev/null; then
+        Note+=", missing your name ($StudentFirstName)"
+      fi
+      if ! grep -i "$STUDENT" <(echo "$CommentBlock") >/dev/null; then
+        Note+=", missing CruzID ($STUDENT)"
+        Score=$((Score - 1))
+      fi
+      if ! grep -i "$ASG" <(echo "$CommentBlock") >/dev/null; then
+        Note+=", missing assignment name ($ASG)"
+        Score=$((Score - 1))
+      fi
+      [[ $Score -eq 5 ]] && Score=P
+      settable grade 5 $Score
+      settable notes 5 "$Note"
+    else
+      settable grade 5 C
+      settable notes 5 "$UserSourceFile did not contain a comment block"
+    fi
+  else
+    settable grade 5 P
+    settable notes 5 "$UserSourceFileDefault not submitted, cannot grade comment block"
+  fi
+
+  # Class name (#7)
+  # 5 points
+  UserClassNameDefault=$(basename $UserSourceFileDefault .java)
+  if [[ ! -z $UserSourceFile ]]; then
+    UserClassName="$(grep -P '^\s*(public\s+)?class\s+' $UserSourceFile | head -n 1 | sed 's#public##g;s#class##g;s#{##g;s#^\s*##g;s#\s.*$##g')"
+    if [[ $UserClassName == $UserClassNameDefault ]]; then
+      settable grade 7 P
+      settable notes 7 "Class $UserClassNameDefault named correctly"
+    else
+      settable grade 7 C
+      settable notes 7 "Class $UserClassNameDefault named incorrectly: $UserClassName"
+    fi
+  else
+    settable grade 7 C
+    settable notes 7 "$UserSourceFileDefault not submitted, cannot grade class name"
+  fi
+
+  # Compilation step, if no compile, opens a bash shell to fix issues
+  # Copy original file into *.java.orig, if cannot compile, just leave it without a .class file
+  # Make sure to copy all changes (*.java, *.java.orig) into .backup to prevent auto revert
+  UserClassFile=$UserClassNameDefault.class
+  if [[ ! -z $UserSourceFile ]]; then
+    javac $UserSourceFile
+    UserClassFile="$UserClassName.class"
+    if [[ ! -e $UserClassFile ]]; then
+      bash
+    fi
+  fi
+
+  # Compilation issues (#8)
+  # 25 points, 5 points charity
+  # This section goes under the assumption that all compilation errors have already been fixed
+  # Specifically, it works by comparing faulty files file.java.orig with fixed file.java
+  # Point value for deduction based on the diff output, or how many changes needed to compile
+  if [[ ! -z $UserSourceFile ]]; then
+    if [[ ! -e $UserClassFile ]]; then
+      settable grade 8 C
+      settable notes 8 "Could not compile"
+    elif [[ -e $UserSourceFile.orig ]]; then
+      CompileDiff="$(diff -ub $UserSourceFile.orig $UserSourceFile)"
+      CompileCount=$(echo "$CompileDiff" | tail -n +4 | grep "^[+-]" | wc -l)
+      CompileCountWeigh=$((CompileCount / 2)) # Since each - is usually accompanied by a -
+      CompileScore=$((25 - CompileCountWeigh))
+      [[ $CompileScore -le 5 ]] && CompileScore=C
+      settable grade 8 $CompileScore
+      settable notes 8 "Errors in compilation: $CompileCount lines of diff output"
+    else
+      settable grade 8 P
+      settable notes 8 "No compilation issues"
+    fi
+  else
+    settable grade 8 C
+    settable notes 8 "$UserSourceFileDefault not submitted, could not check compilation"
+  fi
+
 }
 
 main() {
