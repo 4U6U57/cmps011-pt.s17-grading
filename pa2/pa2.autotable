@@ -2,10 +2,10 @@
 1.desc.1: Charity Points
 1.maxpts: 10
 2: Displays Correct Answer on Lose
-2.desc.1: Charity Points
+2.desc.1: Correct answer not displayed on loss
 2.maxpts: 5
 3: All three guesses inform whether guess was higher or lower
-3.desc.1: Charity Points
+3.desc.1: Third guess doesn't inform of whether it's higher or lower than random number
 3.maxpts: 5
 4: Number Range
 4.desc.1: Range is uniformly distributed but not from 1-10

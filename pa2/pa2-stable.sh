@@ -61,6 +61,9 @@ cleartable() {
 settable() {
   STUDENTTABLE["$1.$2"]="$3"
 }
+gettable() {
+  echo "${STUDENTTABLE[$1.$2]}"
+}
 
 backup() {
   if [[ ! -e $1 ]]; then
@@ -199,9 +202,53 @@ grade() {
       settable grade 8 P
       settable notes 8 "No compilation issues"
     fi
+    rm -f $UserClassFile
   else
     settable grade 8 C
     settable notes 8 "$UserSourceFileDefault not submitted, could not check compilation"
+  fi
+
+  # Ending condition
+  if [[ -z $(gettable grade 1) ]]; then
+    if [[ ! -z $UserSourceFile ]]; then
+      more $UserSourceFile
+      select Rank in "perfect" "minor" "one_works" "one_cond" "prints" "no" "skip"; do
+        case $Rank in
+          ("perfect")
+            settable grade 1 P
+            settable notes 1 "Program terminates on win correctly"
+            ;;
+          ("minor")
+            settable grade 1 8
+            settable notes 1 "Program terminates on win correctly most of the time"
+            ;;
+          ("one_works")
+            settable grade 1 6
+            settable notes 1 "Program terminates on win correctly at least once"
+            ;;
+          ("one_cond")
+            settable grade 1 4
+            settable notes 1 "Program checks winning condition at least once, does not terminate"
+            ;;
+          ("prints")
+            settable grade 1 2
+            settable notes 1 "Program prints winning message at least once, does not check or terminate"
+            ;;
+          ("no")
+            settable grade 1 C
+            settable notes 1 "Program win not implemented at all"
+            ;;
+          ("skip")
+            echo "Skipping $STUDENT for now"
+            break
+            ;;
+        esac
+        break
+      done
+    else
+      settable grade 1 5
+      settable notes 1 "$UserSourceFileDefault not submitted, could not check program win"
+    fi
   fi
 
 }
