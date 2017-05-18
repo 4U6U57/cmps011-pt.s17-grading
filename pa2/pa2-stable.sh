@@ -212,29 +212,29 @@ grade() {
   if [[ -z $(gettable grade 1) ]]; then
     if [[ ! -z $UserSourceFile ]]; then
       more $UserSourceFile
-      select Rank in "perfect" "minor" "one_works" "one_cond" "prints" "no" "skip"; do
+      select Rank in "perfect" "some term" "no term" "some cond" "prints" "bad" "skip"; do
         case $Rank in
           ("perfect")
             settable grade 1 P
             settable notes 1 "Program terminates on win correctly"
             ;;
-          ("minor")
+          ("some term")
             settable grade 1 8
-            settable notes 1 "Program terminates on win correctly most of the time"
+            settable notes 1 "Program checks winning conditions, but doesn't always terminate"
             ;;
-          ("one_works")
+          ("no term")
             settable grade 1 6
-            settable notes 1 "Program terminates on win correctly at least once"
+            settable notes 1 "Program checks winning conditions, but never terminates "
             ;;
-          ("one_cond")
+          ("some cond")
             settable grade 1 4
-            settable notes 1 "Program checks winning condition at least once, does not terminate"
+            settable notes 1 "Program checks some winning conditions, but not all"
             ;;
           ("prints")
             settable grade 1 2
-            settable notes 1 "Program prints winning message at least once, does not check or terminate"
+            settable notes 1 "Program at least prints 'win' at some point"
             ;;
-          ("no")
+          ("bad")
             settable grade 1 C
             settable notes 1 "Program win not implemented at all"
             ;;
