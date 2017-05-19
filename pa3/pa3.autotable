@@ -1,0 +1,32 @@
+1: Correctness
+1.desc.1: Charity Points
+1.desc.2: Algorithm sometimes doesn't work
+1.desc.3: Algorithm often doesn't work
+1.maxpts: 20
+2: Error Checking
+2.desc.1: Some errors not handled
+2.desc.2: Lots of errors not handled
+2.maxpts: 10
+3: Passing Tests
+3.desc.1: Failed 2 tests
+3.desc.2: Failed 3 tests
+3.desc.3: Failed 4 tests
+3.desc.4: Failed 5 tests
+3.desc.5: Failed all tests
+3.maxpts: 10
+4: Design
+4.desc.1: Didn't use the euclidian algorithm
+4.maxpts: 10
+5: Formatting
+5.desc.1: Inconsistent Formatting
+5.desc.2: Unacceptable Formatting
+5.maxpts: 10
+6: Comment Block
+6.desc.1: Comment block invalid or nonexistant
+6.maxpts: 5
+7: Naming (GCD.java)
+7.desc.1: File <> named incorrectly
+7.maxpts: 5
+8: Compilation Issues (generally free points)
+8.desc.1: Code doesn't compile without modification
+8.maxpts: 10
