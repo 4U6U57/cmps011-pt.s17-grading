@@ -23,18 +23,18 @@ BinDir="$ClassDir/bin"
 
 if [[ -d "$ClassDir/$Pwd" && "$Pwd" != "bin" ]]; then
   Asg=$Pwd
-  echo "Asg $Asg taken from basename of current directory"
+  echo "$Exe: Asg $Asg taken from basename of current directory"
 elif [[ "$1" != "" && -d "$ClassDir/$1" ]]; then
   Asg=$1
-  echo "Asg $Asg taken from first argument of script"
+  echo "$Exe: Asg $Asg taken from first argument of script"
   shift
 else
-  echo "No asg provided"
+  echo "$Exe: ERROR - Invalid or no asg provided"
   exit
 fi
 AsgDir=$ClassDir/$Asg
 if [[ ! -d "$AsgDir" ]]; then
-  echo "ERROR: Invalid asg $Asg"
+  echo "$Exe: ERROR - Invalid asg $Asg"
   exit
 fi
 
@@ -57,5 +57,9 @@ for Student in $(ls -d */); do
   StudentDir="$AsgDir/$Student"
   StudentGrade="$StudentDir/$GradeFile"
   StudentScore=$(grep "SCORE:" $StudentGrade | cut -d ':' -f 2 | cut -d "/" -f 1 | sed 's/\s//g')
-  echo "$Student,$StudentScore" >> $OutFile
+  if [[ -z $StudentScore ]]; then
+    echo "$Exe: ERROR - Score not found: $StudentGrade"
+  else
+    echo "$Student,$StudentScore" >> $OutFile
+  fi
 done

@@ -72,6 +72,9 @@ case $Input in
       SecondDir=$AsgDir/$SecondStudent
       FirstGrade=$FirstDir/$GradeFile
       SecondGrade=$SecondDir/$GradeFile
+      FirstName=$(getent passwd $FirstStudent | cut -d ":" -f 5)
+      SecondName=$(getent passwd $SecondStudent | cut -d ":" -f 5)
+
       if [[ -z $FirstStudent ]] || [[ -z $SecondStudent ]]; then
         echo "$Exe: ERROR - Incomplete line: $Pair"
       elif [[ ! -d $FirstDir ]] || [[ ! -d $SecondDir ]]; then
@@ -79,10 +82,9 @@ case $Input in
       elif [[ ! -e $FirstGrade ]]; then
         echo "$Exe: ERROR - Missing grade file to copy: $FirstGrade"
       else
-        echo $FirstGrade -\> $SecondGrade
-       #cp -v $FirstGrade $SecondGrade
-       #echo "" >>$SecondGrade
-       #echo "Pair programming detected ($FirstStudent -> $SecondStudent)" >>$SecondGrade
+       cp -v $FirstGrade $SecondGrade
+       echo "" >>$SecondGrade
+       echo "Pair programming was applied to this assignment ($FirstStudent -> $SecondStudent). This grade report is for $SecondName ($SecondStudent). Please disrgard your partner's name ($FirstName) at the top of this report." | fmt >>$SecondGrade
       fi
     done <$StudentFile
     ;;
