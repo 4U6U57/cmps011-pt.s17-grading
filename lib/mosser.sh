@@ -7,7 +7,7 @@
 # @version
 # @date 2017-04-19
 #
-# Usage: mailer.sh [$ASG] [$FILE]
+# Usage: mosser.sh [$ASG] [$FILE]
 #        ASG: Assignment to moss, defaults to current directory name if valid
 #        FILE: Grade file to overwrite, defaults to GRADE.txt if not specified
 #              The original file is renamed to FILE.moss in each individual student directory
