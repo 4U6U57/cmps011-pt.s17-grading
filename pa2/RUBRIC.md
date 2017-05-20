@@ -1,7 +1,7 @@
 ## Rubric for cmps011-pt.s17/pa2
 
 Sorry about the delay, **pa2** was released on **Friday, May 19**. It was out of
-80 points, and the average was a **73 (90%)**. You should have received a grade
+80 points, and the average was a **73 (91%)**. You should have received a grade
 report email with a breakdown of your score, which should also be reflected on
 eCommons. Below is a description of each section of the grade breakdown.
 
@@ -11,6 +11,8 @@ This assignment was graded by:
 - Isaak Cherdak (icherdak)
 - August Valera (avalera)
 
+Each category is labeled with the respective grader's initials. Sending your
+questions/review requests to the appropriate grader expedites it's processing.
 
 ### Termination on Win
 > 10 points, AV
@@ -25,7 +27,8 @@ Full credit for terminating on win in all guesses, with correct exit code (0)
 
 4 points for checking winning condition in some situations, but not all required
 
-2 points for not checking winning condition correctly, but at the very least it is possible for your program to print "You win." in some situation
+2 points for not checking winning condition correctly, but at the very least it
+  is possible for your program to print "You win." in some situation
 
 5 points if java file not submitted, charity
 
@@ -113,6 +116,18 @@ to your specific submission should be sent as a reply to your grade report
 email, to give us context on your submission. We will not accept any other
 emails, the only exception being if you did not receive a grade report email and
 think you should have.
+
+## Academic Honesty Policy
+
+Effective pa2, all submissions are analyzed to detect plagiarism. These results
+are screened by one of the teaching staff, and then submitted to us graders to
+notify the individuals (and give them a 0 on the assignment). If your submission
+has been flagged as such, you **must** address all issues pertaining to this
+with the instructor directly during their office hours, not the graders or
+teaching staff during scheduled sections. Once flagged, only the instructor may
+modify a submission. Note that, although you may have received a 0 on this
+assignment, this is not a formal charge of Academic Dishonesty (which results in
+letters to your provost, campus judicial proceedings, etc).
 
 ## Grade Review
 
