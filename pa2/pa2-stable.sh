@@ -210,7 +210,7 @@ grade() {
 
   # Ending condition
   RankScore=$(gettable grade 1)
-  echo "$STUDENT: $RankScore"
+  #echo "$STUDENT:$RankScore"
   if [[ -z $RankScore || $RankScore == " U" ]]; then
     if [[ ! -z $UserSourceFile ]]; then
       more $UserSourceFile
