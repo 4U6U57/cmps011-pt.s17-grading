@@ -27,5 +27,5 @@ Click on the relevant link below for more information on an assignment.
     - [Rubric](pa2/RUBRIC.md)
 - [pa3](pa3)
 - [pa4](pa4)
-- pa5 *(No README Provided)*
+- [pa5](pa5)
 - pa6 *(No README Provided)*
