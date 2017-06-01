@@ -146,8 +146,8 @@ grade() {
       settable notes 6 "$UserSourceFile did not contain a comment block"
     fi
   else
-    settable grade 5 P
-    settable notes 5 "$UserSourceFileDefault not submitted, cannot grade comment block"
+    settable grade 6 P
+    settable notes 6 "$UserSourceFileDefault not submitted, cannot grade comment block"
   fi
 
   # Class name (not graded)
@@ -189,7 +189,7 @@ grade() {
       settable notes 8 "Could not compile"
     elif [[ -e $UserSourceFile.orig ]]; then
       CompileDiff="$(diff -ub $UserSourceFile.orig $UserSourceFile)"
-      CompileCount=$(echo "$CompileDiff" | tail -n +4 | grep "^[+-]" | wc -l)
+      CompileCount=$(echo "$CompileDiff" | tail -n +4 | grep -c "^[+-]")
       CompileCountWeigh=$((CompileCount / 2)) # Since each - is usually accompanied by a -
       CompileScore=$((10 - CompileCountWeigh))
       [[ $CompileScore -le 0 ]] && CompileScore=C
@@ -219,7 +219,7 @@ grade() {
       timeout 3 java $UserClassName <$InFile >$OutFile 2>&1
       diff -u $OutFile $ModelOutFile >$DiffFile
       if [[ -s $DiffFile ]]; then
-        DiffCount=$(cat $DiffFile | tail -n +4 | grep "^[+-]" | wc -l)
+        DiffCount=$(cat $DiffFile | tail -n +4 | grep -c "^[+-]")
         DiffCountWeigh=$((DiffCount / 2))
         [[ $DiffCountWeigh -gt 2 ]] && DiffCountWeigh=2
         PerfScore=$((PerfScore - DiffCountWeigh))
