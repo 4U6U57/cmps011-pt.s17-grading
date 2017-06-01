@@ -38,7 +38,7 @@ means that your program is running correctly.
 
 > WARNING: There are few cases that are acceptable to be different in
 > output (errors on the 14th digit or something in one line of two
-> different files)
+> different files). When in doubt consult Isaak Cherdak or August Valera.
 
 ## Removal
 
