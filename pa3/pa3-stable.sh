@@ -199,7 +199,6 @@ grade() {
       settable grade 8 P
       settable notes 8 "No compilation issues"
     fi
-    rm -f $UserClassFile
   else
     settable grade 8 C
     settable notes 8 "$UserSourceFileDefault not submitted, could not check compilation"
@@ -207,7 +206,41 @@ grade() {
 
   # Passing tests (#3)
   # 10 points, 2 points each, no charity
-  echo "Passing tests not implmented yet"
+  if [[ -e $UserClassFile ]]; then
+    PerfScore=10
+    PerfNotes=""
+    for I in $(seq 1 6); do
+      InFile="$ASGBIN/in$I.txt"
+      OutFile="out$I.txt"
+      ModelOutFile="$ASGBIN/model-out$I.txt"
+      DiffFile="diff$I.txt"
+      rm -f $OutFile $DiffFile $BACKUP/$OutFile $BACKUP/$DiffFile
+      touch $InFile
+      timeout 3 java $UserClassName <$InFile >$OutFile 2>&1
+      diff -u $OutFile $ModelOutFile >$DiffFile
+      if [[ -s $DiffFile ]]; then
+        DiffCount=$(cat $DiffFile | tail -n +4 | grep "^[+-]" | wc -l)
+        DiffCountWeigh=$((DiffCount / 2))
+        [[ $DiffCountWeigh -gt 2 ]] && DiffCountWeigh=2
+        PerfScore=$((PerfScore - DiffCountWeigh))
+        PerfNotes+=", failed $(basename $InFile) with $DiffCount lines of diff output"
+        cp $DiffFile $BACKUP
+      fi
+      cp $OutFile $BACKUP
+    done
+    if [[ $PerfScore -eq 10 ]]; then
+      settable grade 1 P
+      settable notes 1 "Performance tests all passed"
+    else
+      settable grade 1 $PerfScore
+      settable notes 1 "Performance issues$PerfNotes"
+    fi
+    rm -f $UserClassFile
+  else
+    settable grade 1 C
+    settable notes 1 "$UserSourceFileDefault not submitted, could not check performance"
+  fi
+
 
 }
 
