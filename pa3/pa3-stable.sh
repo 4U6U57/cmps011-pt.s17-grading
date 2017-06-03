@@ -214,11 +214,14 @@ grade() {
       OutFile="out$I.txt"
       ModelOutFile="$ASGBIN/model-out$I.txt"
       DiffFile="diff$I.txt"
-      rm -f $OutFile $DiffFile $BACKUP/$OutFile $BACKUP/$DiffFile
+      rm -f $OutFile $DiffFile $BACKUP/$OutFile
       touch $InFile
       timeout 3 java $UserClassName <$InFile >$OutFile 2>&1
       diff -u $OutFile $ModelOutFile >$DiffFile
-      if [[ -s $DiffFile ]]; then
+      if [[ ! -e $OutFile ]]; then
+        PerfScore=$((PerfScore - 2))
+        Notes+=", failed $(basename $InFile) by infinte loop"
+      elif [[ -s $DiffFile ]]; then
         DiffCount=$(cat $DiffFile | tail -n +4 | grep -c "^[+-]")
         DiffCountWeigh=$((DiffCount / 2))
         [[ $DiffCountWeigh -gt 2 ]] && DiffCountWeigh=2
@@ -232,6 +235,7 @@ grade() {
       settable grade 1 P
       settable notes 1 "Performance tests all passed"
     else
+      [[ $PerfScore -le 0 ]] && PerfScore=C
       settable grade 1 $PerfScore
       settable notes 1 "Performance issues$PerfNotes"
     fi
