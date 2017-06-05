@@ -9,7 +9,7 @@
 # Expects a line in $GRADEFILE of format "SCORE: $POINTS / $TOTAL"
 # August Valera <avalera>
 
-Exe="mailer"
+Exe="csvify"
 MailWait=3
 PwdDir=$(pwd)
 Pwd=$(basename $PwdDir)
@@ -50,6 +50,8 @@ GradeFile="GRADE.txt"
 OutFile="$AsgBinDir/$Class.$Asg.csv"
 [[ "$1" != "" ]] && OutFile="$Pwd/$1"
 
+AllFile="$AsgBinDir/$Class.$Asg.$GradeFile"
+
 echo "student,$Asg" > $OutFile
 cd $AsgDir
 for Student in $(ls -d */); do
@@ -60,6 +62,7 @@ for Student in $(ls -d */); do
   if [[ -z $StudentScore ]]; then
     echo "$Exe: ERROR - Score not found: $StudentGrade"
   else
-    echo "$Student,$StudentScore" >> $OutFile
+    echo "$Student,$StudentScore" >>$OutFile
+    cat $StudentGrade >>$AllFile
   fi
 done

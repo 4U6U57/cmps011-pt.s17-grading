@@ -74,9 +74,18 @@ case $Input in
       StudentDir=$AsgDir/$Student
       if [[ -d $StudentDir ]]; then
         StudentName=$(getent passwd $Student | cut -d ":" -f 5)
-        cp -v $StudentDir/$GradeFile $StudentDir/$GradeFile.moss
-        cp -v $MossFile $StudentDir/$GradeFile
-        sed -i "s#\\\$Asg#$Asg#g;s#\\\$StudentName#$StudentName#g;s#\\\$Student#$Student#g" $StudentDir/$GradeFile
+        StudentGrade=$StudentDir/$GradeFile
+        StudentMoss=$StudentGrade.moss
+        if [[ -e $StudentGrade ]]; then
+          cp -v $StudentGrade $StudentMoss
+        else
+          echo "$Exe: $Student did not have gradefile: $StudentGrade"
+        fi
+        cp -v $MossFile $StudentGrade
+        sed -i "s#\\\$Asg#$Asg#g;s#\\\$StudentName#$StudentName#g;s#\\\$Student#$Student#g" $StudentGrade
+        if diff -q $StudentGrade $StudentMoss >/dev/null; then
+          rm -f $StudentMoss
+        fi
       else
         echo "$Exe: Error processing $Student"
       fi

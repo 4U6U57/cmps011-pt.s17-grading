@@ -232,17 +232,17 @@ grade() {
       cp $OutFile $BACKUP
     done
     if [[ $PerfScore -eq 10 ]]; then
-      settable grade 1 P
-      settable notes 1 "Performance tests all passed"
+      settable grade 3 P
+      settable notes 3 "Performance tests all passed"
     else
       [[ $PerfScore -le 0 ]] && PerfScore=C
-      settable grade 1 $PerfScore
-      settable notes 1 "Performance issues$PerfNotes"
+      settable grade 3 $PerfScore
+      settable notes 3 "Performance issues$PerfNotes"
     fi
     rm -f $UserClassFile
   else
-    settable grade 1 C
-    settable notes 1 "$UserSourceFileDefault not submitted, could not check performance"
+    settable grade 3 C
+    settable notes 3 "$UserSourceFileDefault not submitted, could not check performance"
   fi
 
 
