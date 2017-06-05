@@ -53,15 +53,6 @@ Full credit for decent formatting, indentation where expected:
  - subtract 5 points for clearly inconsistent formatting.
  - subtract 10 points for absolutely unacceptable formatting.
 
-## Class named GCD
-
-**5 points, AV, same as pa3**
-
-Full credit for naming the class `GCD` (the code is wrapped in a `class GCD {
-... }` block, and the program is run with `java GCD`).
-
-No credit for not doing this.
-
 ## Comment Block
 
 ** 5 points, AV, same as pa2**
@@ -91,7 +82,7 @@ elsewhere).
 
 Full credit for submitting a file named exactly `GCD.java`.
 
-5 points for submitting some other `.java` file.
+3 points for submitting some other `.java` file.
 
 No credit for not doing this.
 
@@ -142,8 +133,8 @@ updated/actual grade either when the regular assignment grades are released, or
 within 48 hours of the professor notifying the graders to clear your submission,
 if the grades have already been released. Clearance must come directly from the
 professor, so if this does not occur within 48 hours, please email the
-instructor directly. Any updated grade report sent to your UCSC email overrides
-all previously issued grade reports.
+instructor directly. *Any updated grade report sent to your UCSC email overrides
+all previously issued grade reports.*
 
 ## Grade Review
 
