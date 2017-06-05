@@ -12,15 +12,23 @@ This assignment was graded by:
 - August Valera (avalera)
 
 Each category is labeled with the respective grader's initials. Sending your
-questions/review requests to the appropriate grader expedites it's processing.
+questions/review requests to the appropriate grader expedites its processing.
 
 ## Correctness
 
 **20 points, IC**
 
+ - subtract 5 points if there is at least one instance of an incorrect GCD calculation.
+ - subtract 10 points if few answers are correct.
+ - subtract 15 points if only very specific answers are correct (this is very few cases. If you have specific questions, email me)
+ - subtract 20 points if nothing is correct.
+
 ## Error Checking
 
 **10 points, IC**
+
+ - subtract 5 points if there is at least one instance where program works incorrectly (due to incorrect processing of inputs).
+ - subtract 10 points if tests 4-6 do not correctly generate an answer where tests 1-3 normally would've.
 
 ## Passing Tests
 
@@ -34,13 +42,16 @@ Tests were the same distributed in the assignment check script.
 
 **10 points, IC**
 
-Full credit given for using the Euclidian algorithm given in the lab manual.
+Credit only given for using the Euclidian algorithm which was given in the lab manual.
 
 ## Formatting
 
 **10 points, IC**
 
-Full credit for decent formatting, indentation where expected
+Full credit for decent formatting, indentation where expected:
+
+ - subtract 5 points for clearly inconsistent formatting.
+ - subtract 10 points for absolutely unacceptable formatting.
 
 ## Class named GCD
 
@@ -128,7 +139,7 @@ letters to your provost, campus judicial proceedings, etc).
 If you have discussed your case with the professor and he has decided to clear
 the flag on your submission, you should receive a grade report with your
 updated/actual grade either when the regular assignment grades are released, or
-within 48 hours of the professor notifying the grades to clear your submission,
+within 48 hours of the professor notifying the graders to clear your submission,
 if the grades have already been released. Clearance must come directly from the
 professor, so if this does not occur within 48 hours, please email the
 instructor directly. Any updated grade report sent to your UCSC email overrides
