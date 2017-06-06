@@ -41,9 +41,6 @@ fi
 AsgBinDir="$BinDir/$Asg"
 [[ ! -d $AsgBinDir ]] && mkdir $AsgBinDir
 
-MailDir="$AsgBinDir/$Exe"
-[[ ! -d $MailDir ]] && mkdir $MailDir
-
 GradeFile="GRADE.txt"
 [[ "$1" != "" ]] && GradeFile="$1" && shift
 

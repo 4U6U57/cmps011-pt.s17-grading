@@ -188,7 +188,7 @@ grade() {
       settable grade 8 C
       settable notes 8 "Could not compile"
     elif [[ -e $UserSourceFile.orig ]]; then
-      CompileDiff="$(diff -ub $UserSourceFile.orig $UserSourceFile)"
+      CompileDiff="$(diff -Bbwu $UserSourceFile.orig $UserSourceFile)"
       CompileCount=$(echo "$CompileDiff" | tail -n +4 | grep -c "^[+-]")
       CompileCountWeigh=$((CompileCount / 2)) # Since each - is usually accompanied by a -
       CompileScore=$((10 - CompileCountWeigh))
@@ -217,7 +217,7 @@ grade() {
       rm -f $OutFile $DiffFile $BACKUP/$OutFile
       touch $InFile
       timeout 3 java $UserClassName <$InFile >$OutFile 2>&1
-      diff -u $OutFile $ModelOutFile >$DiffFile
+      diff -Bbwu $OutFile $ModelOutFile >$DiffFile
       if [[ ! -e $OutFile ]]; then
         PerfScore=$((PerfScore - 2))
         Notes+=", failed $(basename $InFile) by infinte loop"

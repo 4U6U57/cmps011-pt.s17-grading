@@ -127,9 +127,6 @@ grade() {
         Note+=", missing filename ($UserSourceFile)"
         Score=$((Score - 1))
       fi
-      if ! grep "$StudentFirstName" <(echo "$CommentBlock") >/dev/null; then
-        Note+=", missing your name ($StudentFirstName)"
-      fi
       if ! grep -i "$STUDENT" <(echo "$CommentBlock") >/dev/null; then
         Note+=", missing CruzID ($STUDENT)"
         Score=$((Score - 1))
@@ -137,6 +134,9 @@ grade() {
       if ! grep -i "$ASG" <(echo "$CommentBlock") >/dev/null; then
         Note+=", missing assignment name ($ASG)"
         Score=$((Score - 1))
+      fi
+      if ! grep "$StudentFirstName" <(echo "$CommentBlock") >/dev/null; then
+        Note+=", doesn't contain your legal name ($StudentFirstName) (only an informational warning, not a deduction)"
       fi
       [[ $Score -eq 5 ]] && Score=P
       settable grade 8 $Score
@@ -189,7 +189,7 @@ grade() {
       settable notes 10 "Could not compile"
     elif [[ -e $UserSourceFile.orig ]]; then
       CompileMax=30
-      CompileDiff="$(diff -ub $UserSourceFile.orig $UserSourceFile)"
+      CompileDiff="$(diff -Bbwu $UserSourceFile.orig $UserSourceFile)"
       CompileCount=$(echo "$CompileDiff" | tail -n +4 | grep -c "^[+-]")
       CompileCountWeigh=$((CompileCount / 2)) # Since each - is usually accompanied by a -
       CompileScore=$((CompileMax - CompileCountWeigh))
@@ -218,7 +218,7 @@ grade() {
       rm -f $OutFile $DiffFile $BACKUP/$OutFile
       touch $InFile
       timeout 3 java $UserClassName <$InFile >$OutFile 2>&1
-      diff -u $OutFile $ModelOutFile >$DiffFile
+      diff -Bbwu $OutFile $ModelOutFile >$DiffFile
       if [[ ! -e $OutFile ]]; then
         PerfScore=$((PerfScore - 2))
         Notes+=", failed $(basename $InFile) by infinte loop"
