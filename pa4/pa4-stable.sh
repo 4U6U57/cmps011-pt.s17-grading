@@ -210,12 +210,12 @@ grade() {
   UserExecFile="$(basename $UserSourceFileDefault .java)"
   if [[ ! -e "Makefile" ]] && [[ ! -e "makefile" ]]; then
     settable grade 6 C
-    settable notes 6 "Makefile not submitted, could not check make"
+    settable notes 6 "Makefile not submitted or named incorrectly, could not check make"
   elif [[ -e $UserClassFile ]]; then
     make
     if [[ ! -e $UserExecFile ]]; then
       settable grade 6 C
-      settable notes 6 "Makefile does not compile executable: $UserExecFile"
+      settable notes 6 "Makefile does not create executable: $UserExecFile"
       rm -f *.class
       javac $UserSourceFile
       echo "Main-class: $UserClassName" > Manifest
@@ -224,12 +224,13 @@ grade() {
       chmod +x $UserExecFile
     elif [[ ! -x $UserExecFile ]]; then
       settable grade 6 3
-      settable notes 6 "Makefile creates executable but not runnable: $UserExecFile"
+      settable notes 6 "Makefile does not create runnable executable: $UserExecFile"
       chmod +x $UserExecFile
     else
       settable grade 6 P
       settable notes 6 "Makefile creates executable: $UserExecFile"
     fi
+    rm -f $ExecFile
   else
     settable grade 6 C
     settable notes 6 "$UserSourceFileDefault could not be compiled, could not check make"
