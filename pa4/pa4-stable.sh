@@ -171,7 +171,7 @@ grade() {
   # Make sure to copy all changes (*.java, *.java.orig) into .backup to prevent auto revert
   UserClassFile=$UserClassNameDefault.class
   if [[ ! -z $UserSourceFile ]]; then
-    javac $UserSourceFile
+    javac $UserSourceFile >/dev/null 2>&1
     UserClassFile="$UserClassName.class"
     if [[ ! -e $UserClassFile ]]; then
       bash
@@ -212,15 +212,15 @@ grade() {
     settable grade 6 C
     settable notes 6 "Makefile not submitted or named incorrectly, could not check make"
   elif [[ -e $UserClassFile ]]; then
-    make
+    make >/dev/null 2>&1
     if [[ ! -e $UserExecFile ]]; then
       settable grade 6 C
       settable notes 6 "Makefile does not create executable: $UserExecFile"
       rm -f *.class
-      javac $UserSourceFile
+      javac $UserSourceFile >/dev/null 2>&1
       echo "Main-class: $UserClassName" > Manifest
-      jar cvfm $UserExecFile Manifest *.class
-      rm Manifest
+      jar cvfm $UserExecFile Manifest *.class >/dev/null 2>&1
+      rm -f Manifest
       chmod +x $UserExecFile
     elif [[ ! -x $UserExecFile ]]; then
       settable grade 6 3
@@ -230,7 +230,8 @@ grade() {
       settable grade 6 P
       settable notes 6 "Makefile creates executable: $UserExecFile"
     fi
-    rm -f $ExecFile
+    rm -f $UserExecFile
+    [[ ! -e $UserClassFile ]] && javac $UserSourceFile >/dev/null 2>&1
   else
     settable grade 6 C
     settable notes 6 "$UserSourceFileDefault could not be compiled, could not check make"
@@ -271,8 +272,6 @@ grade() {
       settable grade 2 $PerfScore
       settable notes 2 "General test issues$PerfNotes"
     fi
-    rm -f $UserClassFile
-  else
     settable grade 2 C
     settable notes 2 "$UserSourceFileDefault could not be compiled, could not check general tests"
   fi
@@ -280,6 +279,41 @@ grade() {
   # Unit tests (#3-5)
   # 5 points each
   # poly(), diff(), findRoot()
+  for I in $(seq 3 5); do
+    case $I in
+      (3) UnitFunc="poly()";;
+      (4) UnitFunc="diff()";;
+      (5) UnitFunc="findRoot()";;
+    esac
+    if [[ -e $UserClassFile ]]; then
+      UnitClass="RootsClient$((I - 2))"
+      UnitClassFile="$UnitClass.class"
+      UnitSourceFile="$UnitClass.java"
+      cp $ASGBIN/$UnitSourceFile $UnitSourceFile
+      javac $UnitSourceFile >/dev/null
+      if [[ ! -e $UnitClassFile ]]; then
+        settable grade $I C
+        settable notes $I "Could not compile unit test: $UnitFunc"
+      else
+        UnitOut=$(timeout 3 java $UnitClass 2>&1)
+        if echo $UnitOut | grep "Passed" >/dev/null; then
+          settable grade $I P
+          settable notes $I "Unit test passed: $UnitFunc"
+        elif echo $UnitOut | grep "Failed" >/dev/null; then
+          settable grade $I 3
+          settable notes $I "Failed unit test: $UnitFunc"
+        else
+          settable grade $I C
+          settable notes $I "Error running unit test: $UnitFunc"
+        fi
+      fi
+      rm -f $UnitSourceFile $UnitClassFile
+    else
+      settable grade $I C
+      settable notes $I "$UserSourceFileDefault could not be compiled, could not check unit test: $UnitFunc"
+    fi
+  done
+  rm -f $UserClassFile
 
 }
 
