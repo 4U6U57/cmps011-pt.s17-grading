@@ -9,7 +9,7 @@
 2.desc.3: Failed 4 tests
 2.desc.4: Failed 5 tests
 2.desc.5: Failed all tests
-2.maxpts: 10
+2.maxpts: 15
 3: Passing poly() Test
 3.desc.1: Failed
 3.maxpts: 5
@@ -36,4 +36,4 @@
 10.desc.1: 1 change needed
 10.desc.2: 2 changes needed
 10.desc.3: 3 changes needed
-10.maxpts: 30
+10.maxpts: 25

@@ -153,7 +153,7 @@ grade() {
   # Class name (not graded)
   UserClassNameDefault=$(basename $UserSourceFileDefault .java)
   if [[ ! -z $UserSourceFile ]]; then
-    UserClassName="$(grep -P '^\s*(public\s+)?class\s+' $UserSourceFile | head -n 1 | sed 's#public##g;s#class##g;s#{##g;s#^\s*##g;s#\s.*$##g')"
+    UserClassName="$(grep -P '^\s*(public\s+)?class\s+' $UserSourceFile | head -n 1 | sed 's#public##g;s#class##g;s#{.*##g;s#^\s*##g;s#\s.*$##g')"
     #if [[ $UserClassName == $UserClassNameDefault ]]; then
     #  settable grade 7 P
     #  settable notes 7 "Class $UserClassNameDefault named correctly"
@@ -179,7 +179,7 @@ grade() {
   fi
 
   # Compilation issues (#10)
-  # 30 points, no charity
+  # 25 points, no charity
   # This section goes under the assumption that all compilation errors have already been fixed
   # Specifically, it works by comparing faulty files file.java.orig with fixed file.java
   # Point value for deduction based on the diff output, or how many changes needed to compile
@@ -188,8 +188,8 @@ grade() {
       settable grade 10 C
       settable notes 10 "Could not compile"
     elif [[ -e $UserSourceFile.orig ]]; then
-      CompileMax=30
-      CompileDiff="$(diff -Bbwu $UserSourceFile.orig $UserSourceFile)"
+      CompileMax=25
+      CompileDiff="$(diff -ub $UserSourceFile.orig $UserSourceFile)"
       CompileCount=$(echo "$CompileDiff" | tail -n +4 | grep -c "^[+-]")
       CompileCountWeigh=$((CompileCount / 2)) # Since each - is usually accompanied by a -
       CompileScore=$((CompileMax - CompileCountWeigh))
@@ -205,8 +205,38 @@ grade() {
     settable notes 10 "$UserSourceFileDefault not submitted, could not check compilation"
   fi
 
-  # Passing tests ???
-  # 10 points, 2 points each, no charity
+  # Makefile making executable (#6)
+  # 5 points
+  UserExecFile="$(basename $UserSourceFileDefault .java)"
+  if [[ ! -e "Makefile" ]] && [[ ! -e "makefile" ]]; then
+    settable grade 6 C
+    settable notes 6 "Makefile not submitted, could not check make"
+  elif [[ -e $UserClassFile ]]; then
+    make
+    if [[ ! -e $UserExecFile ]]; then
+      settable grade 6 C
+      settable notes 6 "Makefile does not compile executable: $UserExecFile"
+      rm -f *.class
+      javac $UserSourceFile
+      echo "Main-class: $UserClassName" > Manifest
+      jar cvfm $UserExecFile Manifest *.class
+      rm Manifest
+      chmod +x $UserExecFile
+    elif [[ ! -x $UserExecFile ]]; then
+      settable grade 6 3
+      settable notes 6 "Makefile creates executable but not runnable: $UserExecFile"
+      chmod +x $UserExecFile
+    else
+      settable grade 6 P
+      settable notes 6 "Makefile creates executable: $UserExecFile"
+    fi
+  else
+    settable grade 6 C
+    settable notes 6 "$UserSourceFileDefault could not be compiled, could not check make"
+  fi
+
+  # General tests (#2)
+  # 15 points, 3 points each, no charity
   if [[ -e $UserClassFile ]]; then
     PerfScore=10
     PerfNotes=""
@@ -220,12 +250,12 @@ grade() {
       timeout 3 java $UserClassName <$InFile >$OutFile 2>&1
       diff -Bbwu $OutFile $ModelOutFile >$DiffFile
       if [[ ! -e $OutFile ]]; then
-        PerfScore=$((PerfScore - 2))
+        PerfScore=$((PerfScore - 3))
         Notes+=", failed $(basename $InFile) by infinte loop"
       elif [[ -s $DiffFile ]]; then
         DiffCount=$(cat $DiffFile | tail -n +4 | grep -c "^[+-]")
         DiffCountWeigh=$((DiffCount / 2))
-        [[ $DiffCountWeigh -gt 2 ]] && DiffCountWeigh=2
+        [[ $DiffCountWeigh -gt 3 ]] && DiffCountWeigh=3
         PerfScore=$((PerfScore - DiffCountWeigh))
         PerfNotes+=", failed $(basename $InFile) with $DiffCount lines of diff output"
         cp $DiffFile $BACKUP
@@ -233,19 +263,22 @@ grade() {
       cp $OutFile $BACKUP
     done
     if [[ $PerfScore -eq 10 ]]; then
-      settable grade 3 P
-      settable notes 3 "Performance tests all passed"
+      settable grade 2 P
+      settable notes 2 "General tests all passed"
     else
       [[ $PerfScore -le 0 ]] && PerfScore=C
-      settable grade 3 $PerfScore
-      settable notes 3 "Performance issues$PerfNotes"
+      settable grade 2 $PerfScore
+      settable notes 2 "General test issues$PerfNotes"
     fi
     rm -f $UserClassFile
   else
-    settable grade 3 C
-    settable notes 3 "$UserSourceFileDefault not submitted, could not check performance"
+    settable grade 2 C
+    settable notes 2 "$UserSourceFileDefault could not be compiled, could not check general tests"
   fi
 
+  # Unit tests (#3-5)
+  # 5 points each
+  # poly(), diff(), findRoot()
 
 }
 
