@@ -272,6 +272,7 @@ grade() {
       settable grade 2 $PerfScore
       settable notes 2 "General test issues$PerfNotes"
     fi
+  else
     settable grade 2 C
     settable notes 2 "$UserSourceFileDefault could not be compiled, could not check general tests"
   fi
@@ -293,18 +294,18 @@ grade() {
       javac $UnitSourceFile >/dev/null
       if [[ ! -e $UnitClassFile ]]; then
         settable grade $I C
-        settable notes $I "Could not compile unit test: $UnitFunc"
+        settable notes $I "Unit test could not be compiled: $UnitFunc"
       else
         UnitOut=$(timeout 3 java $UnitClass 2>&1)
         if echo $UnitOut | grep "Passed" >/dev/null; then
           settable grade $I P
-          settable notes $I "Unit test passed: $UnitFunc"
+          settable notes $I "Unit test ran successfully: $UnitFunc"
         elif echo $UnitOut | grep "Failed" >/dev/null; then
           settable grade $I 3
-          settable notes $I "Failed unit test: $UnitFunc"
+          settable notes $I "Unit test did not pass: $UnitFunc"
         else
           settable grade $I C
-          settable notes $I "Error running unit test: $UnitFunc"
+          settable notes $I "Unit test did not run correcly: $UnitFunc"
         fi
       fi
       rm -f $UnitSourceFile $UnitClassFile
