@@ -257,6 +257,7 @@ grade() {
       elif [[ -s $DiffFile ]]; then
         DiffCount=$(cat $DiffFile | tail -n +4 | grep -c "^[+-]")
         DiffCountWeigh=$((DiffCount / 2))
+        DiffCountWeigh=$((DiffCountWeigh / 2)) # Extra charity
         [[ $DiffCountWeigh -gt 3 ]] && DiffCountWeigh=3
         PerfScore=$((PerfScore - DiffCountWeigh))
         PerfNotes+=", failed $(basename $InFile) with $DiffCount lines of diff output"
@@ -296,17 +297,19 @@ grade() {
         settable grade $I C
         settable notes $I "Unit test could not be compiled: $UnitFunc"
       else
-        UnitOut=$(timeout 3 java $UnitClass 2>&1)
-        if echo $UnitOut | grep "Passed" >/dev/null; then
+        UnitOut=$(mktemp)
+        timeout 3 java $UnitClass </dev/null >$UnitOut 2>&1
+        if cat $UnitOut | grep "Passed" >/dev/null; then
           settable grade $I P
           settable notes $I "Unit test ran successfully: $UnitFunc"
-        elif echo $UnitOut | grep "Failed" >/dev/null; then
+        elif cat $UnitOut | grep "Failed" >/dev/null; then
           settable grade $I 3
           settable notes $I "Unit test did not pass: $UnitFunc"
         else
           settable grade $I C
           settable notes $I "Unit test did not run correcly: $UnitFunc"
         fi
+        rm -f $UnitOut
       fi
       rm -f $UnitSourceFile $UnitClassFile
     else
