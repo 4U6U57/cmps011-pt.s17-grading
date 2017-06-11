@@ -238,11 +238,14 @@ grade() {
   fi
 
   # General tests (#2)
-  # 15 points, 3 points each, no charity
+  # 15 points, 2 points each, 3 points charity
+  # Only checks first 6 tests
   if [[ -e $UserClassFile ]]; then
-    PerfScore=10
+    PerfScoreMax=15
+    PerfNum=6
+    PerfScore=$PerfScoreMax
     PerfNotes=""
-    for I in $(seq 1 6); do
+    for I in $(seq 1 $PerfNum); do
       InFile="$ASGBIN/in$I.txt"
       OutFile="out$I.txt"
       ModelOutFile="$ASGBIN/model-out$I.txt"
@@ -251,21 +254,23 @@ grade() {
       touch $InFile
       timeout 3 java $UserClassName <$InFile >$OutFile 2>&1
       diff -Bbwu $OutFile $ModelOutFile >$DiffFile
+      PerfScoreEach=0
+      [[ $PerfNum -gt 0 ]] && PerfScoreEach=$((PerfScoreMax / PerfNum))
       if [[ ! -e $OutFile ]]; then
-        PerfScore=$((PerfScore - 3))
+        PerfScore=$((PerfScore - PerfScoreEach))
         Notes+=", failed $(basename $InFile) by infinte loop"
       elif [[ -s $DiffFile ]]; then
         DiffCount=$(cat $DiffFile | tail -n +4 | grep -c "^[+-]")
         DiffCountWeigh=$((DiffCount / 2))
         DiffCountWeigh=$((DiffCountWeigh / 2)) # Extra charity
-        [[ $DiffCountWeigh -gt 3 ]] && DiffCountWeigh=3
+        [[ $DiffCountWeigh -gt $PerfScoreEach ]] && DiffCountWeigh=$PerfScoreEach
         PerfScore=$((PerfScore - DiffCountWeigh))
         PerfNotes+=", failed $(basename $InFile) with $DiffCount lines of diff output"
         cp $DiffFile $BACKUP
       fi
       cp $OutFile $BACKUP
     done
-    if [[ $PerfScore -eq 10 ]]; then
+    if [[ $PerfScore -eq $PerfScoreMax ]]; then
       settable grade 2 P
       settable notes 2 "General tests all passed"
     else
