@@ -193,7 +193,7 @@ grade() {
       CompileCount=$(echo "$CompileDiff" | tail -n +4 | grep -c "^[+-]")
       CompileCountWeigh=$((CompileCount / 2)) # Since each - is usually accompanied by a -
       CompileScore=$((CompileMax - CompileCountWeigh))
-      [[ $CompileScore -le 0 ]] && CompileScore=C
+      [[ $CompileScore -le 5 ]] && CompileScore=C
       settable grade 10 $CompileScore
       settable notes 10 "Errors in compilation: $CompileCount lines of diff output"
     else
