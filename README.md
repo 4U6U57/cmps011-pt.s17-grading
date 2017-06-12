@@ -17,7 +17,14 @@ Click on the relevant link below for more information on an assignment.
 
 ### Labs
 
-> No Labs Listed
+- lab1 *(No README Provided)*
+- lab2 *(No README Provided)*
+- lab3 *(No README Provided)*
+- lab4 *(No README Provided)*
+- lab5 *(No README Provided)*
+- lab6 *(No README Provided)*
+- lab7 *(No README Provided)*
+- lab8 *(No README Provided)*
 
 ### Programs
 
@@ -26,6 +33,8 @@ Click on the relevant link below for more information on an assignment.
 - [pa2](pa2)
     - [Rubric](pa2/RUBRIC.md)
 - [pa3](pa3)
+    - [Rubric](pa3/RUBRIC.md)
 - [pa4](pa4)
+    - [Rubric](pa4/RUBRIC.md)
 - [pa5](pa5)
 - [pa6](pa6)

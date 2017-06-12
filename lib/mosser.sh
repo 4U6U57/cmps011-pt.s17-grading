@@ -83,7 +83,7 @@ case $Input in
         fi
         cp -v $MossFile $StudentGrade
         sed -i "s#\\\$Asg#$Asg#g;s#\\\$StudentName#$StudentName#g;s#\\\$Student#$Student#g" $StudentGrade
-        if diff -q $StudentGrade $StudentMoss >/dev/null; then
+        if [[ -e $StudentMoss ]] && diff -q $StudentGrade $StudentMoss >/dev/null; then
           rm -f $StudentMoss
         fi
       else
