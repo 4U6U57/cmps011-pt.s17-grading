@@ -26,24 +26,23 @@ questions/review requests to the appropriate grader expedites its processing.
 
 **15 points, 2 points each, 3 points charity, AV**
 
-For each test, full credit given if test output exactly matches output.
+- For each test, full credit given if test output exactly matches output.
 
-Tests were the first 6 input files distributed in the assignment check script.
+- Tests were the first 6 input files distributed in the assignment check script.
 
-No credit given if program did not compile.
-
+- No credit given if program did not compile.
 
 ## Unit tests: poly(), diff(), findRoot()
 
 **15 points total, 5 points each, 3 points charity each, AV**
 
-Full credit for passing the unit test, taken directly from the assignment check
+- Full credit for passing the unit test, taken directly from the assignment check
 script.
 
-3 points for failing the unit test (function exists but does not work as
+- 3 points for failing the unit test (function exists but does not work as
   expected).
 
-No credit given if the unit test did not compile (the function/class was not
+- No credit given if the unit test did not compile (the function/class was not
 given the right name, or took in different arguments than what was specified, or
 did not exist outright).
 
@@ -51,12 +50,12 @@ did not exist outright).
 
 **5 points, AV**
 
-Full credit for creating an executable called exactly `Roots` that runs
+- Full credit for creating an executable called exactly `Roots` that runs
 correctly
 
-3 points for creating a file `Roots` that is not executable (needs `chmod +x`)
+- 3 points for creating a file `Roots` that is not executable (needs `chmod +x`)
 
-No credit for invalid/incorrectly named/not submitted Makefile. Makefiles ran
+- No credit for invalid/incorrectly named/not submitted Makefile. Makefiles ran
 with `make` by default must be called either `Makefile` or `makefile`.
 
 ## Formatting
@@ -70,55 +69,55 @@ Full credit for decent formatting, indentation where expected:
 
 ## Comment Block
 
-** 5 points, AV, same as pa2**
+**5 points, AV, same as pa2**
 
-Full credit for a comment block following the standards listed in the
+-Full credit for a comment block following the standards listed in the
 [lab1 PDF](https://classes.soe.ucsc.edu/cmps011/Spring17/lab1.pdf) and on the
 [grader expectations document](../docs/EXPECTATIONS.md).
 
-1 point deducted for omitting each of the following:
-- filename (exactly as it appears in `ls`)
-- your CruzID (as seen in `echo $USER`)
-- assignment name (`pa4` exactly as used in the submit command)
+- 1 point deducted for omitting each of the following:
+    - filename (exactly as it appears in `ls`)
+    - your CruzID (as seen in `echo $USER`)
+    - assignment name (`pa4` exactly as used in the submit command)
 
-Note that the notes will indicate if you have not included your name as listed
+- Note that the notes will indicate if you have not included your name as listed
 on the course roster (run `getent passwd $USER` to check this). However, there
 is no deduction corresponding to this message
 
-No credit for not having a comment block (detected by checking the first 10
+- No credit for not having a comment block (detected by checking the first 10
 lines of the file for lines prefixed with a `/` or `*`).
 
-Full credit for not submitting any Java file (charity, due to major deductions
+- Full credit for not submitting any Java file (charity, due to major deductions
 elsewhere).
 
 ## Naming (Roots.java)
 
 **5 points, AV**
 
-Full credit for submitting a file named exactly `Roots.java`.
+- Full credit for submitting a file named exactly `Roots.java`.
 
-3 points for submitting some other `.java` file.
+- 3 points for submitting some other `.java` file.
 
-No credit for not doing this.
+- No credit for not doing this.
 
 ## Compilation Issues
 
 **25 points, 5 points charity, AV**
 
-Full credit if file compiles (running `javac Roots.java` produces a `Roots.class`,
+- Full credit if file compiles (running `javac Roots.java` produces a `Roots.class`,
 names may vary due to other errors, but this was not taken into account).
 
-If your file had compilation errors, we manually went into it and modified it
+- If your file had compilation errors, we manually went into it and modified it
 (without changing any of the underlying program structure) to compile. This
 consisted of mostly fixing syntax errors, typos, and bad variable scope.
 
-We then took the difference between the original and the modified versions (with
+- We then took the difference between the original and the modified versions (with
 `diff -ub`). The amount of lines of difference generated, divided by 2 (because
 each change consists of a deletion **-** and an addition **+** to the file) was
 taken to be the general number of changes needed to be made to make the program
 compile.
 
-Your score was then set to *max(25 - number of changes, 5)*, to enforce a 5
+- Your score was then set to *max(25 - number of changes, 5)*, to enforce a 5
 point minimum on this section for charity.
 
 ## Questions
