@@ -18,6 +18,10 @@ questions/review requests to the appropriate grader expedites its processing.
 
 **20 points, IC**
 
+- subtract 5 points for up to 5 roots missed.
+- subtract 10 points for up to 10 roots missed.
+- no credit if program doesn't work or misses more than 10 roots.
+
 ## General Tests
 
 **15 points, 2 points each, 3 points charity, AV**
