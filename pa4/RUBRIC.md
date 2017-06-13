@@ -16,7 +16,7 @@ questions/review requests to the appropriate grader expedites its processing.
 
 ## Correctness
 
-**20 points, IC**
+**20 points, only first 6 tests considered, IC**
 
 - subtract 5 points for up to 5 roots missed.
 - subtract 10 points for up to 10 roots missed.
