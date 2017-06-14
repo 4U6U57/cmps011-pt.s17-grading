@@ -1,0 +1,46 @@
+1: Error Checking
+1.desc.1: Doesn't handle some erroneous arguments
+1.desc.2: Doesn't handle any erroneous arguments
+1.maxpts: 10
+2: Verbose Operation
+2.desc.1: Doesn't print each solution or doesn't print number of solutions
+2.desc.2: Everything is verbose, no distrinction made
+2.maxpts: 5
+3: Passing General Tests
+3.desc.1: Failed 1 tests
+3.desc.2: Failed 2 tests
+3.desc.3: Failed 3 tests
+3.desc.4: Failed 4 tests
+3.desc.5: Failed 5 tests
+3.desc.6: Failed 6 tests
+3.desc.7: Failed 7 tests
+3.desc.8: Failed 8 tests
+3.desc.9: Failed 9 tests
+3.desc.10: Failed 10 tests
+3.maxpts: 10
+4: Passing isSolution() Test
+4.desc.1: Failed 1 sub-test
+4.desc.2: Failed both sub-tests
+4.maxpts: 10
+5: Passing nextPermutation() Test
+5.desc.1: Failed 1 sub-test
+5.desc.2: Failed both sub-tests
+5.maxpts: 10
+6: Makefile
+6.desc.1: Makefile doesn't compile a working executable called "Queens"
+6.maxpts: 5
+7: Formatting
+7.desc.1: Inconsistent Formatting
+7.desc.2: Unacceptable Formatting
+7.maxpts: 10
+8: Comment Block
+8.desc.1: Comment block invalid or nonexistant
+8.maxpts: 5
+9: Naming (Queens.java)
+9.desc.1: File named incorrectly
+9.maxpts: 5
+10: Problems in Automation
+10.desc.1: 1 change needed
+10.desc.2: 2 changes needed
+10.desc.3: 3 changes needed
+10.maxpts: 30
