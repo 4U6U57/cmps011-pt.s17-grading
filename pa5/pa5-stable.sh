@@ -333,6 +333,13 @@ grade() {
   done
   rm -f $UserClassFile
 
+  # Formatting (#7)
+  # 10 points
+  FormatGrade=$(gettable grade 7)
+  if [[ -z $FormatGrade ]] || [[ $FormatGrade == U ]]; then
+    echo $STUDENT not formatted
+  fi
+
 }
 
 main() {
