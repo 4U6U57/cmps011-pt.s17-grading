@@ -1,7 +1,7 @@
 # Rubric for cmps011-pt.s17/pa4
 
-**pa4** was released on **$DATE**. It was out of 80 points, and the average was
-a **$SCORE ($PERCENT%)**. You should have received a grade report email with a
+**pa4** was released on **Wed, June 14**. It was out of 100 points, and the average was
+a **77 (77%)**. You should have received a grade report email with a
 breakdown of your score, which should also be reflected on eCommons. Below is a
 description of each section of the grade breakdown.
 
