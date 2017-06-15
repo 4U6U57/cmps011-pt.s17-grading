@@ -58,5 +58,5 @@ for Student in $(ls -d */); do
   cd $StudentDir
   Output="$($@)"
   $ShowName && [[ ! -z "$Output" ]] && pwd
-  [[ ! -z "$Output" ]] && echo "$Output"
+  [[ ! -z "$Output" ]] && echo $Output
 done
