@@ -179,7 +179,7 @@ grade() {
   fi
 
   # Compilation issues (#10)
-  # 25 points, no charity
+  # 30 points, 5 points charity
   # This section goes under the assumption that all compilation errors have already been fixed
   # Specifically, it works by comparing faulty files file.java.orig with fixed file.java
   # Point value for deduction based on the diff output, or how many changes needed to compile
@@ -340,22 +340,26 @@ grade() {
     if [[ ! -z $UserSourceFile ]]; then
       more $UserSourceFile
       echo "Formatting grade:"
-      select FormatRank in "good" "inconsistent" "unacceptable" "skip"; do
+      select FormatRank in "perfect" "needs improvement" "inconsistent" "unacceptable" "skip"; do
         case $FormatRank in
-          ("good")
+          ("perfect")
             settable grade 7 P
-            settable notes 7 "Code formatting follows guidelines"
+            settable notes 7 "Code formatting is sufficient"
+            ;;
+          ("needs improvement")
+            settable grade 7 8
+            settable notes 7 "Code formatting needs improvement"
             ;;
           ("inconsistent")
             settable grade 7 5
-            settable notes 7 "Code formatting inconsistent"
+            settable notes 7 "Code formatting is inconsistent"
             ;;
           ("unacceptable")
             settable grade 7 C
-            settable notes 7 "Code formatting unacceptable"
+            settable notes 7 "Code formatting is unacceptable"
             ;;
           ("skip")
-            echo "Skipping $STUDENT for now"
+            echo "Skipping $STUDENT formatting for now"
             settable grade 7 U
             ;;
         esac
