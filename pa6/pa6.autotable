@@ -1,0 +1,33 @@
+1: Program Compiles
+1.desc.1: Program doesn't compile even after a few fixes from the grader
+1.maxpts: 15
+2: Passing General Tests
+2.desc.1: Failed 1 tests
+2.desc.2: Failed 2 tests
+2.desc.3: Failed 3 tests
+2.desc.4: Failed 4 tests
+2.maxpts: 20
+3: Passing Exception Tests
+3.desc.1: Failed div() exception test
+3.desc.2: Failed recip() exception test
+3.desc.3: Failed both exception tests
+3.maxpts: 10
+4: Makefile
+4.desc.1: Makefile doesn't compile a working executable called "ComplexTest"
+4.maxpts: 5
+5: Formatting
+5.desc.1: Inconsistent Formatting
+5.desc.2: Unacceptable Formatting
+5.maxpts: 10
+6: Comment Block
+6.desc.1: Comment block invalid or nonexistant
+6.maxpts: 5
+7: Naming (Complex.java)
+7.desc.1: File named incorrectly
+7.maxpts: 5
+8: Problems in Automation
+8.desc.1: 1 change needed
+8.desc.2: 2 changes needed
+8.desc.3: 3 changes needed
+8.desc.4: Class not named "Complex"
+8.maxpts: 30
