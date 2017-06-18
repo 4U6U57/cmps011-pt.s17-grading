@@ -336,7 +336,7 @@ grade() {
   # Formatting (#7)
   # 10 points
   FormatGrade=$(gettable grade 7)
-  if [[ -z $FormatGrade ]] || [[ $FormatGrade == U ]]; then
+  if [[ -z $FormatGrade ]] || [[ $FormatGrade == " U" ]]; then
     if [[ ! -z $UserSourceFile ]]; then
       more $UserSourceFile
       echo "Formatting grade:"
