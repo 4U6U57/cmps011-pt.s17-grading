@@ -37,4 +37,5 @@ Click on the relevant link below for more information on an assignment.
 - [pa4](pa4)
     - [Rubric](pa4/RUBRIC.md)
 - [pa5](pa5)
+    - [Rubric](pa5/RUBRIC.md)
 - [pa6](pa6)
