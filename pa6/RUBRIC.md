@@ -1,7 +1,7 @@
 # Rubric for cmps011-pt.s17/pa6
 
-**pa5** was released on **Mon, June 19**. It was out of 100 points, and the
-average was a **AVERAGE**. You should have received a grade report email with a
+**pa6** was released on **Mon, June 19**. It was out of 100 points, and the
+average was a **77 (77%)**. You should have received a grade report email with a
 breakdown of your score, which should also be reflected on eCommons. Below is a
 description of each section of the grade breakdown.
 
@@ -16,22 +16,35 @@ questions/review requests to the appropriate grader expedites its processing.
 
 ## Program Compiles
 
-**15 points, AV**
+**15 points, 15 points charity, AV**
 
--
+- Full credit if program compiled, possibly after fixes done under the
+compilation section
+
+- Full credit if program did not compile, as charity for other sections
+
+- Full credit if `Complex.java` was not submitted, as charity for other sections
 
 ## General Tests
 
-**20 points, 2 points each, AV**
+**20 points, 5 points each, AV**
 
--
+- For each test, full credit given if test output exactly matches model output,
+taken directly from the assignment check script.
+
 - No credit given if program did not compile.
 
-## Exception tests
+## Unit tests: div, recip
 
 **10 points total, AV**
 
--
+- Full credit for passing the unit test, taken directly from the assignment
+  check script. These tests only checked whether or not the appropriate
+  exception was thrown when attempting to divide or find the reciprocal of 0.
+
+- 2 points for failing the unit test (function exists but does not throw
+  appropriate exception).
+
 - No credit given if the unit test did not compile (the function/class was not
 given the right name, or took in different arguments than what was specified, or
 did not exist outright).
@@ -40,14 +53,17 @@ did not exist outright).
 
 **5 points, AV**
 
-- Full credit for creating an executable called exactly `Queens` that runs
+- Full credit for creating an executable called exactly `ComplexTest` that runs
 correctly
 
-- 3 points for creating a file `Queens` that is not executable (needs `chmod
-  +x`)
+- 3 points for creating a file `ComplexTest` that is not executable (needs
+  `chmod +x`)
+
+- No credit for not creating an executable `ComplexTest`. This could have
+occurred if you did not submit `ComplexTest.java`
 
 - No credit for invalid/incorrectly named/not submitted Makefile. Makefiles ran
-with `make` by default must be called either `Makefile` or `makefile`.
+  with `make` by default must be called either `Makefile` or `makefile`.
 
 ## Formatting
 
@@ -69,7 +85,7 @@ Full credit for decent formatting, indentation where expected:
 - 1 point deducted for omitting each of the following:
     - filename (exactly as it appears in `ls`)
     - your CruzID (as seen in `echo $USER`)
-    - assignment name (`pa5` exactly as used in the submit command)
+    - assignment name (`pa6` exactly as used in the submit command)
 
 - Note that the notes will indicate if you have not included your name as listed
 on the course roster (run `getent passwd $USER` to check this). However, there
@@ -85,7 +101,7 @@ elsewhere).
 
 **5 points, AV**
 
-- Full credit for submitting a file named exactly `Queens.java`.
+- Full credit for submitting a file named exactly `Complex.java`.
 
 - 3 points for submitting some other `.java` file.
 
@@ -95,8 +111,8 @@ elsewhere).
 
 **30 points, 5 points charity, AV**
 
-- Full credit if file compiles (running `javac Queens.java` produces a
-  `Queens.class`, names may vary due to other errors, but this was not taken
+- Full credit if file compiles (running `javac Complex.java` produces a
+  `Complex.class`, names may vary due to other errors, but this was not taken
   into account).
 
 - If your file had compilation errors, we manually went into it and modified it
