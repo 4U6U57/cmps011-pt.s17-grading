@@ -332,45 +332,6 @@ grade() {
     fi
   done
   rm -f $UserClassFile
-
-  # Formatting (#7)
-  # 10 points
-  FormatGrade=$(gettable grade 7)
-  if [[ -z $FormatGrade ]] || [[ $FormatGrade == " U" ]]; then
-    if [[ ! -z $UserSourceFile ]]; then
-      more $UserSourceFile
-      echo "Formatting grade:"
-      select FormatRank in "perfect" "needs improvement" "inconsistent" "unacceptable" "skip"; do
-        case $FormatRank in
-          ("perfect")
-            settable grade 7 P
-            settable notes 7 "Code formatting is sufficient"
-            ;;
-          ("needs improvement")
-            settable grade 7 8
-            settable notes 7 "Code formatting needs improvement"
-            ;;
-          ("inconsistent")
-            settable grade 7 5
-            settable notes 7 "Code formatting is inconsistent"
-            ;;
-          ("unacceptable")
-            settable grade 7 C
-            settable notes 7 "Code formatting is unacceptable"
-            ;;
-          ("skip")
-            echo "Skipping $STUDENT formatting for now"
-            settable grade 7 U
-            ;;
-        esac
-        break
-      done
-    else
-      settable grade 7 P
-      settable notes 7 "$UserSourceFileDefault not submitted, could not check formatting"
-    fi
-  fi
-
 }
 
 main() {

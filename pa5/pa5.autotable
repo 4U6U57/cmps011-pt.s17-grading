@@ -4,7 +4,7 @@
 1.maxpts: 10
 2: Verbose Operation
 2.desc.1: Doesn't print each solution or doesn't print number of solutions
-2.desc.2: Everything is verbose, no distrinction made
+2.desc.2: Everything is verbose, no distinction made
 2.maxpts: 5
 3: Passing General Tests
 3.desc.1: Failed 1 tests
