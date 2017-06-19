@@ -1,7 +1,7 @@
-# Rubric for cmps011-pt.s17/pa5
+# Rubric for cmps011-pt.s17/pa6
 
 **pa5** was released on **Mon, June 19**. It was out of 100 points, and the
-average was a **77 (77%)**. You should have received a grade report email with a
+average was a **AVERAGE**. You should have received a grade report email with a
 breakdown of your score, which should also be reflected on eCommons. Below is a
 description of each section of the grade breakdown.
 
@@ -14,39 +14,24 @@ This assignment was graded by:
 Each category is labeled with the respective grader's initials. Sending your
 questions/review requests to the appropriate grader expedites its processing.
 
-## Error Checking
+## Program Compiles
 
-**10 points, IC**
+**15 points, AV**
 
-- Subtract 5 points if you failed to print out a usage message and exit on either of the first 4 tests
-- Subtract 10 points if you failed to print out a usage message and exit on all of the first 4 tests
-
-## Verbose Output
-
-**5 points, IC**
-
-- Subtract 5 points if either your program didn't have a distinction between verbose and not verbose, or if your program prints only either the number of solutions or the solutions themselves but not both when in verbose mode
+-
 
 ## General Tests
 
-**10 points, 1 point each, AV**
+**20 points, 2 points each, AV**
 
-- For each test, full credit given if test output exactly matches model output,
-taken directly from the assignment check script.
-
+-
 - No credit given if program did not compile.
 
-## Unit tests: isSolution(), nextPermutation()
+## Exception tests
 
-**20 points total, 10 points per function, 5 points each test, 3 points charity
-each, AV**
+**10 points total, AV**
 
-- Full credit for passing the unit test, taken directly from the assignment
-  check script.
-
-- 3 points for failing the unit test (function exists but does not work as
-  expected).
-
+-
 - No credit given if the unit test did not compile (the function/class was not
 given the right name, or took in different arguments than what was specified, or
 did not exist outright).
@@ -96,7 +81,7 @@ lines of the file for lines prefixed with a `/` or `*`).
 - Full credit for not submitting any Java file (charity, due to major deductions
 elsewhere).
 
-## Naming (Queens.java)
+## Naming (Complex.java)
 
 **5 points, AV**
 
@@ -106,7 +91,7 @@ elsewhere).
 
 - No credit for not doing this.
 
-## Compilation Issues
+## Problems in Automation
 
 **30 points, 5 points charity, AV**
 

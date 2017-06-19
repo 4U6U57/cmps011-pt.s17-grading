@@ -296,7 +296,7 @@ grade() {
   fi
 
   # Unit tests (#3)
-  # 5 points each, 3 points per part, 1 point charity
+  # 5 points each, 3 points per part, 2 points charity
   if [[ -e $UserClassFile ]]; then
     UnitClass="ComplexExceptionTest"
     UnitClassFile="$UnitClass.class"
