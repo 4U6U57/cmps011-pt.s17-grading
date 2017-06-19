@@ -39,3 +39,4 @@ Click on the relevant link below for more information on an assignment.
 - [pa5](pa5)
     - [Rubric](pa5/RUBRIC.md)
 - [pa6](pa6)
+    - [Rubric](pa6/RUBRIC.md)
