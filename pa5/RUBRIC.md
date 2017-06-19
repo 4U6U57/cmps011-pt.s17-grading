@@ -1,7 +1,7 @@
 # Rubric for cmps011-pt.s17/pa5
 
 **pa5** was released on **Mon, June 19**. It was out of 100 points, and the
-average was a **AVERAGE**. You should have received a grade report email with a
+average was a **77 (77%)**. You should have received a grade report email with a
 breakdown of your score, which should also be reflected on eCommons. Below is a
 description of each section of the grade breakdown.
 

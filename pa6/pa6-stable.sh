@@ -178,15 +178,15 @@ grade() {
     fi
   fi
 
-  # Compilation issues (#1)
+  # Compilation issues (#8)
   # 30 points, 5 points charity
   # This section goes under the assumption that all compilation errors have already been fixed
   # Specifically, it works by comparing faulty files file.java.orig with fixed file.java
   # Point value for deduction based on the diff output, or how many changes needed to compile
   if [[ ! -z $UserSourceFile ]]; then
     if [[ ! -e $UserClassFile ]]; then
-      settable grade 1 C
-      settable notes 1 "Could not compile"
+      settable grade 8 C
+      settable notes 8 "Could not compile"
     elif [[ -e $UserSourceFile.orig ]]; then
       CompileMax=30
       CompileDiff="$(diff -ub $UserSourceFile.orig $UserSourceFile)"
@@ -194,15 +194,15 @@ grade() {
       CompileCountWeigh=$((CompileCount / 2)) # Since each + is usually accompanied by a -
       CompileScore=$((CompileMax - CompileCountWeigh))
       [[ $CompileScore -le 5 ]] && CompileScore=C
-      settable grade 1 $CompileScore
-      settable notes 1 "Errors in compilation: $CompileCount lines of diff output"
+      settable grade 8 $CompileScore
+      settable notes 8 "Errors in compilation: $CompileCount lines of diff output"
     else
-      settable grade 1 P
-      settable notes 1 "No compilation issues"
+      settable grade 8 P
+      settable notes 8 "No compilation issues"
     fi
   else
-    settable grade 1 C
-    settable notes 1 "$UserSourceFileDefault not submitted, could not check compilation"
+    settable grade 8 C
+    settable notes 8 "$UserSourceFileDefault not submitted, could not check compilation"
   fi
 
   # Makefile making executable (#4)
@@ -235,6 +235,19 @@ grade() {
   else
     settable grade 4 C
     settable notes 4 "$UserSourceFileDefault could not be compiled, could not check make"
+  fi
+
+  # BS Free Points Section (#1)
+  # 15 points, all charity
+  if [[ -z $UserSourceFile ]]; then
+    settable grade 1 P
+    settable notes 1 "$UserSourceFileDefault not submitted, could not check compilation after fixes"
+  elif [[ -e $UserClassFile ]]; then
+    settable grade 1 P
+    settable notes 1 "$UserSourceFile compiled (possibly after fixes)"
+  else
+    settable grade 1 P
+    settable notes 1 "$UserSourceFile could not compile even with grader fixes"
   fi
 
   # General tests (#2)
@@ -283,7 +296,7 @@ grade() {
   fi
 
   # Unit tests (#3)
-  # 3 points each, 3 points per part, 1 point charity
+  # 5 points each, 3 points per part, 1 point charity
   if [[ -e $UserClassFile ]]; then
     UnitClass="ComplexExceptionTest"
     UnitClassFile="$UnitClass.class"
