@@ -230,7 +230,7 @@ grade() {
       settable grade 4 P
       settable notes 4 "Makefile creates executable: $UserExecFile"
     fi
-    rm -f $UserExecFile
+    rm -f $UserExecFile $UserExecFile.class
     [[ ! -e $UserClassFile ]] && javac $UserSourceFile >/dev/null 2>&1
   else
     settable grade 4 C
@@ -284,7 +284,47 @@ grade() {
 
   # Unit tests (#3)
   # 3 points each, 3 points per part, 1 point charity
-  rm -f $UserClassFile
+  if [[ -e $UserClassFile ]]; then
+    UnitClass="ComplexExceptionTest"
+    UnitClassFile="$UnitClass.class"
+    UnitSourceFile="$UnitClass.java"
+    cp $ASGBIN/$UnitSourceFile $UnitSourceFile
+    javac $UnitSourceFile >/dev/null
+    if [[ ! -e $UnitClassFile ]]; then
+      settable grade 3 C
+      settable notes 3 "Unit tests could not be compiled"
+    else
+      UnitOut=$(mktemp)
+      timeout 3 java $UnitClass </dev/null >$UnitOut 2>&1
+      UnitScore=10
+      UnitNotes=""
+      for UnitFunc in div recip; do
+        TestOut="$(cat $UnitOut | grep test$J)"
+        if echo $TestOut | grep "PASSED" >/dev/null; then
+          UnitNotes+=", passed $UnitFunc exception test"
+        elif echo $TestOut | grep "FAILED" >/dev/null; then
+          UnitNotes+=", failed $UnitFunc exception test"
+          UnitScore=$((UnitScore - 3))
+        else
+          UnitNotes+=", could not run $UnitFunc exception test"
+          UnitScore=$((UnitScore - 5))
+        fi
+      done
+      if [[ $UnitScore -eq 10 ]]; then
+        settable grade 3 P
+        settable notes 3 "Unit tests passed"
+      else
+        settable grade 3 $UnitScore
+        settable notes 3 "Unit tests' issues$UnitNotes"
+      fi
+      rm -f $UnitSourceFile $UnitClassFile $UnitOut
+    fi
+
+    rm -f $UserClassFile
+  else
+    settable grade 3 C
+    settable notes 3 "$UserSourceFileDefault could not be compiled, could not check unit tests"
+  fi
 }
 
 main() {
