@@ -1,7 +1,7 @@
 # Rubric for cmps011-pt.s17/pa5
 
 **pa5** was released on **Mon, June 19**. It was out of 100 points, and the
-average was a **AVERAGE**. You should have received a grade report email with a
+average was a 77. You should have received a grade report email with a
 breakdown of your score, which should also be reflected on eCommons. Below is a
 description of each section of the grade breakdown.
 
@@ -18,13 +18,14 @@ questions/review requests to the appropriate grader expedites its processing.
 
 **10 points, IC**
 
--
+- Subtract 5 points if you failed to print out a usage message and exit on either of the first 4 tests
+- Subtract 10 points if you failed to print out a usage message and exit on all of the first 4 tests
 
 ## Verbose Output
 
 **5 points, IC**
 
--
+- Subtract 5 points if either your program didn't have a distinction between verbose and not verbose, or if your program prints only either the number of solutions or the solutions themselves but not both when in verbose mode
 
 ## General Tests
 
