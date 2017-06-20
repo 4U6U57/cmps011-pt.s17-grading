@@ -208,6 +208,8 @@ grade() {
   # Makefile making executable (#4)
   # 5 points
   UserExecFile="ComplexTest"
+  UserExecClass="$UserExecFile.class"
+  UserExecSource="$UserExecFile.java"
   if [[ ! -e "Makefile" ]] && [[ ! -e "makefile" ]]; then
     settable grade 4 C
     settable notes 4 "Makefile not submitted or named incorrectly, could not check make"
@@ -217,8 +219,9 @@ grade() {
       settable grade 4 C
       settable notes 4 "Makefile does not create executable: $UserExecFile"
       rm -f *.class
-      javac $UserSourceFile >/dev/null 2>&1
-      echo "Main-class: $UserClassName" > Manifest
+      [[ ! -e $UserExecSource ]] && cp $ASGBIN/$UserExecSource .
+      javac $UserExecSource >/dev/null 2>&1
+      echo "Main-class: $UserExecFile" > Manifest
       jar cvfm $UserExecFile Manifest *.class >/dev/null 2>&1
       rm -f Manifest
       chmod +x $UserExecFile
@@ -230,7 +233,6 @@ grade() {
       settable grade 4 P
       settable notes 4 "Makefile creates executable: $UserExecFile"
     fi
-    rm -f $UserExecFile $UserExecFile.class
     [[ ! -e $UserClassFile ]] && javac $UserSourceFile >/dev/null 2>&1
   else
     settable grade 4 C
@@ -242,7 +244,7 @@ grade() {
   if [[ -z $UserSourceFile ]]; then
     settable grade 1 P
     settable notes 1 "$UserSourceFileDefault not submitted, could not check compilation after fixes"
-  elif [[ -e $UserClassFile ]]; then
+  elif [[ -e $UserExecFile ]]; then
     settable grade 1 P
     settable notes 1 "$UserSourceFile compiled (possibly after fixes)"
   else
@@ -252,7 +254,7 @@ grade() {
 
   # General tests (#2)
   # 20 points, 5 points each
-  if [[ -e $UserClassFile ]]; then
+  if [[ -e $UserExecFile ]]; then
     PerfScoreMax=20
     PerfNum=4
     PerfScore=$PerfScoreMax
@@ -264,7 +266,7 @@ grade() {
       DiffFile="diff$I.txt"
       rm -f $OutFile $DiffFile $BACKUP/$OutFile
       touch $InFile
-      timeout 3 java $UserClassName <$InFile >$OutFile 2>&1
+      timeout 3 $UserExecFile $InFile $OutFile 2>&1
       diff -Bbwu $OutFile $ModelOutFile >$DiffFile
       PerfScoreEach=0
       [[ $PerfNum -gt 0 ]] && PerfScoreEach=$((PerfScoreMax / PerfNum))
@@ -290,9 +292,10 @@ grade() {
       settable grade 2 $PerfScore
       settable notes 2 "General test issues$PerfNotes"
     fi
+    rm -f $UserExecFile
   else
     settable grade 2 C
-    settable notes 2 "$UserSourceFileDefault could not be compiled, could not check general tests"
+    settable notes 2 "$UserExecFile could not be compiled, could not check general tests"
   fi
 
   # Unit tests (#3)
@@ -333,7 +336,7 @@ grade() {
       rm -f $UnitSourceFile $UnitClassFile $UnitOut
     fi
 
-    rm -f $UserClassFile
+    rm -f $UserClassFile $UserExecClass
   else
     settable grade 3 C
     settable notes 3 "$UserSourceFileDefault could not be compiled, could not check unit tests"
